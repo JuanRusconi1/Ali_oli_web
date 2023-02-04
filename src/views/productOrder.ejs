@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+  <!--Include head-->
+  <%- include("partials/head", {style:"productOrder"}) %>
+
+  <body>
+    <!--Include header-->
+    <%- include("partials/header") %>
+    <main>
+      <div class="contenedor-orden">
+        <p class="titulo-orden"><%=product.name%></p>
+        <div class="orden-imagen">
+          <img
+            src="/images/products/<%=product.image%>"
+            alt=""
+            class="orden-img"
+          />
+        </div>
+        <p class="descripcion-orden">
+          <%=product.description%>
+        </p>
+        <div class="contenedor-cantidad">
+          <p class="titulo-cantidad">cantidad</p>
+        </div>
+        <div class="botones-cantidad">
+          <i class="fa-solid fa-minus menos"></i>
+          <p class="numero-cantidad">1</p>
+          <i class="fa-solid fa-plus mas"></i>
+        </div>
+        <div class="contendor-detalles">
+          <p class="p-detalles">detalles adicionales</p>
+          <textarea
+            class="textarea-detalles"
+            name="detalles"
+            id="detalles"
+            cols="30"
+            rows="5"
+          ></textarea>
+        </div>
+        <div class="contenedor-adicionales">
+          <p class="p-adicionales">Adicionales</p>
+          <i class="fa-solid fa-chevron-down arrow"></i>
+        </div>
+        <div class="contenedor-adicional-columna">
+          <div class="contenedor-adicional-tipo">
+            <div class="contenedor-checkbox">
+              <label class="container">
+                <input type="checkbox" />
+                <div class="checkmark"></div>
+              </label>
+              <p class="adicional-titulo">Salsa barbacoa</p>
+            </div>
+            <p class="adicional-precio">$150</p>
+          </div>
+          <div class="contenedor-adicional-tipo">
+            <div class="contenedor-checkbox">
+              <label class="container">
+                <input type="checkbox" />
+                <div class="checkmark"></div>
+              </label>
+              <p class="adicional-titulo">Salsa ali oli</p>
+            </div>
+            <p class="adicional-precio">$150</p>
+          </div>
+          <div class="contenedor-adicional-tipo">
+            <div class="contenedor-checkbox">
+              <label class="container">
+                <input type="checkbox" />
+                <div class="checkmark"></div>
+              </label>
+              <p class="adicional-titulo">Salsa guacamole</p>
+            </div>
+            <p class="adicional-precio">$150</p>
+          </div>
+          <div class="contenedor-adicional-tipo">
+            <div class="contenedor-checkbox">
+              <label class="container">
+                <input type="checkbox" />
+                <div class="checkmark"></div>
+              </label>
+
+              <p class="adicional-titulo">Salsa cheddar</p>
+            </div>
+            <p class="adicional-precio">$150</p>
+          </div>
+        </div>
+        <div class="contenedor-boton-continuar">
+          <a class="boton-continuar" href="#" data-id="<%=product.id%>">Continuar</a>
+        </div>
+      </div>
+       
+        <div class="contenedor-div-carrito">
+          <div class="carrito"><i class="fa-solid fa-basket-shopping"></i></div>
+          <div class="contador">0</div>
+        </div>
+        
+    </main>
+
+    <!--Include footer-->
+    <%- include("partials/footer") %>
+    <script src="/js/productOrder.js"></script>
+  </body>
+</html>

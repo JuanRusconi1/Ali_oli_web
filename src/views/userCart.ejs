@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+  <!--Include head-->
+  <%- include("partials/head", {style:"cart"}) %>
+  <body>
+    <!--Include header-->
+    <%- include("partials/header") %>
+    <main>
+      <div class="div-principal-orden">
+        <p class="p-titulo-pedido">Mi Pedido</p>
+        <div class="div-principal-compra">
+          <div class="div-titulo-compra">detalle del pedido</div>
+          <div class="div-contenedor-item">
+            <div class="div-item-lista">
+              <div class="titulo-div">2x Hamburguesa Americana</div>
+              <div class="div-lista-precio">
+                <p>$1200</p>
+                <button class="boton-eliminar">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>
+            </div>
+            <div class="div-item-lista">
+              <div class="titulo-div">2x Hamburguesa Americana</div>
+              <div class="div-lista-precio">
+                <p>$1200</p>
+                <button class="boton-eliminar">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="div-principal-compra">
+          <div class="div-entrega-compra">forma de entrega</div>
+          <div class="div-botones">
+            <div class="div-tipo-entrega">Delivery</div>
+            <div class="div-tipo-entrega">Take Away</div>
+          </div>
+          <div class="div-formulario-delivery">
+            <label for="nombre"
+              ><p class="nombre-imput">Nombre de quien recibe...</p>
+              <input class="input-form" type="text" id="nombre" />
+            </label>
+            <label for="direccion"
+              ><p class="nombre-imput">Direcíon</p>
+              <input class="input-form" type="text" id="direccion" />
+            </label>
+            <label for="hora"
+              ><p class="nombre-imput">Cuando te lo enviamos ?</p>
+              <input class="input-form" type="time" id="hora" />
+            </label>
+          </div>
+          <div class="div-formulario-take-away">
+            <label for="nombre"
+              ><p class="nombre-imput">Nombre de quien retira</p>
+              <input class="input-form" type="text" id="nombre" />
+            </label>
+            <label for="hora"
+              ><p class="nombre-imput">Hora de retiro</p>
+              <input class="input-form" type="time" id="hora" />
+            </label>
+          </div>
+        </div>
+        <div class="div-principal-compra">
+          <div class="div-titulo-compra">formas de pago</div>
+          <div class="div-pago-compra">
+            <ul class="ul-lista-pago">
+              <li class="li-pago">
+                <label class="container">
+                  <input type="checkbox" />
+                  <div class="checkmark"></div>
+                </label>
+                <p class="p-pago">efectivo</p>
+              </li>
+              <li class="li-pago">
+                <label class="container">
+                  <input type="checkbox" />
+                  <div class="checkmark"></div>
+                </label>
+                <p class="p-pago">transferencia</p>
+              </li>
+              <li class="li-pago">
+                <label class="container">
+                  <input type="checkbox" />
+                  <div class="checkmark"></div>
+                </label>
+                <p class="p-pago">tarjeta de debito</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="div-principal-total">
+          <p class="p-total">total:</p>
+          <p class="p-valor">$1200</p>
+        </div>
+        <div class="boton-terminar-compra">
+          <i class="fa-solid fa-check"></i>
+          <a href="#">Continuar</a>
+        </div>
+      </div>
+    </main>
+    <!--Include footer-->
+    <%- include("partials/footer") %>
+    <script src="/js/orderCart.js
+    "></script>
+  </body>
+</html>

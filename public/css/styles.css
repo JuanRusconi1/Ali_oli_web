@@ -1,0 +1,256 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+/* Colores */
+:root {
+  --amber: #fac82f;
+  --dark: #000000;
+  --white: #fffffc;
+  --gray: #817f75;
+  --base-font-family: "Roboto", sans-serif;
+}
+
+.contenedor-padre {
+  background-color: var(--amber);
+  height: 5rem;
+}
+/* CSS para el header */
+.contenedor-nombre {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 5rem;
+}
+.logo-AO {
+  max-width: 2.5rem;
+  margin: 1rem;
+}
+.remove-bg {
+  filter: brightness(1);
+  mix-blend-mode: multiply;
+}
+.contenedor-abierto {
+  margin: 0.6rem;
+}
+.abierto {
+  display: flex;
+  font-weight: bold;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: #95c623;
+  border: 1px solid white;
+  width: 5rem;
+  padding: 0.5rem;
+  border-radius: 0.4rem;
+  font-size: 0.8em;
+}
+.abierto i {
+  margin-right: .2rem;
+}
+
+/*CSS para el Main*/
+main {
+  background-image: url("/images/others/fondo.jpg");
+  background-size: 12rem;
+  background-repeat: repeat;
+  min-height: 41rem ;
+  padding-bottom: 2rem; 
+  text-align: center;
+  
+}
+
+.div-titulo {
+  width: 100%;
+  margin: 0 0 0.8rem;
+}
+.principal {
+  padding-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+.p-titulo {
+  color: white;
+  display: inline-block;
+  font-size: 1.5em;
+  border-bottom: 3px solid var(--amber);
+  font-weight: bolder;
+}
+/* Lista de Productos */
+.columna-div-principal {
+  width: 100%;
+  display: none;
+  flex-flow: column nowrap;
+}
+.lista-div-principal {
+  display: flex;
+  box-sizing: content-box;
+  height: 5.5rem;
+  flex-flow: row nowrap;
+  padding: 0.4rem;
+  align-items: center;
+}
+.imagen-div {
+  border: 2px solid var(--amber);
+  border-radius: 0.4rem;
+  width: 7.5rem;
+  height: 4.375rem;
+  flex: 3;
+}
+.imagen-img {
+  max-width: 10rem;
+  max-height: 6rem;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0.4rem;
+}
+.titulos-div {
+  box-sizing: content-box;
+  display: flex;
+  flex-flow: column nowrap;
+  height: 5rem;
+  justify-content: flex-start;
+  flex: 5;
+}
+.titulo-nombre-p {
+  color: white;
+  font-size: 0.7em;
+  font-weight: bold;
+  text-align: left;
+  text-transform: uppercase;
+  text-decoration: underline;
+  margin: 0.2rem;
+}
+.titulo-descripcion-p {
+  color: white;
+  font-size: 0.65em;
+  text-align: left;
+  height: 4rem;
+  padding: 0.2rem;
+}
+.titulo-precio-p {
+  font-size: 0.7em;
+  text-align: left;
+  color: #ffd34e;
+  margin: 0.3rem;
+}
+.boton-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6rem;
+  font-weight: bold;
+  flex: 2;
+}
+.boton-a {
+  position: relative;
+  display: flex;
+  bottom: 0.8rem;
+  justify-content: center;
+  background-color: #ffcb2f;
+  border-radius: 0.5rem;
+  width: 3rem;
+  padding: 0.5rem;
+  margin: 0.1rem;
+}
+.boton-a i {
+  margin: 0.1rem;
+}
+
+.contenedor-div-carrito{
+  position: fixed;
+  right: 5%;
+  bottom: 15%;
+  background-color: orange;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+}
+.carrito {
+  font-size: 2rem;
+}
+.contador {
+  position: absolute;
+  font-size: 1em;
+  right: -4%;
+  top: 5%;
+  font-weight: bold;
+  text-align: center;
+  background-color: rgb(255, 65, 65);
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  color: white;
+}
+/*CSS para el Footer*/
+footer {
+  background-color: var(--amber);
+  height: 6rem;
+}
+.footer-principal-div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.footer-div {
+  width: 70%;
+  display: flex;
+  padding: 1rem 1rem .4rem;
+  flex: 7;
+}
+.footer-titulo {
+  color: black;
+  font-size: 1em;
+  padding-bottom: .5rem;
+  font-weight: bold;
+  display: inline-block;
+  border-bottom: 3px solid black;
+}
+.footer-div-redes {
+  width: 30%;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  padding: .5rem;
+  flex: 3;
+}
+.footer-icono {
+  font-size: 2.7em;
+  margin: .5rem;
+  color: rgb(27, 27, 27);
+}
+
+.whatsapp:hover {
+  color:#25D366;
+}
+.instagram:hover {
+  color: tomato;
+}
+.mensaje-desarrollador{
+  background-color: var(--amber);
+  font-size: .7em;
+  font-weight: bolder;
+  color: black;
+  padding-left: 1rem;
+  padding-bottom: .6rem;
+}
+
+
+/* Clases interactivas */
+
+.hidden {
+  display: none;
+}
+.flex {
+  display: flex;
+}
+

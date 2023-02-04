@@ -1,0 +1,187 @@
+main {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: initial;
+}
+.div-principal-orden {
+    width: 90%;
+    display: flex;
+    flex-flow: column nowrap;
+    padding: .6rem;
+    margin-top: 1rem;
+}
+.p-titulo-pedido {
+    /* text-align: center; */
+    color: white;
+    font-size: 1.3em;
+    font-weight: bold;
+    display: inline-block;
+    border-bottom: 2px solid white;
+    padding-bottom: .2rem;
+}
+.div-principal-compra {
+    margin: 1rem .2rem;
+}
+.div-titulo-compra {
+    font-size: 1.1em;
+    text-transform: uppercase;
+    padding-bottom: .2rem;
+    display: inline-block;
+    border-bottom: 2px solid var(--amber);
+    color: var(--amber);
+    margin-bottom: .6rem;
+}
+.div-item-lista {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.titulo-div {
+    color: white;
+    font-size: .8em;
+    width: 60%;
+}
+.div-lista-precio {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 1em;
+}
+.boton-eliminar {
+    background-color: tomato;
+    padding: .3rem;
+    font-size: .8em;
+    text-align: center;
+    margin-left: .5em;
+    transition: all .4s ease;
+}
+.boton-eliminar:active {
+    transform: scale(1.1);
+}
+.div-entrega-compra {
+    font-size: 1.1em;
+    text-transform: uppercase;
+    padding-bottom: .2rem;
+    display: inline-block;
+    border-bottom: 2px solid var(--amber);
+    color: var(--amber);
+    margin-bottom: .6rem;
+}
+.div-botones {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+}
+.div-tipo-entrega {
+    background-color: white;
+    color: var(--amber);
+    border: 1px solid var(--amber);
+    border-radius: .2rem;
+    padding: .7rem .4rem;
+    margin-right: 1rem;
+    transition: all .5s ;
+}
+.div-tipo-entrega.active {
+    background-color: var(--amber);
+    color: white;
+}
+.div-formulario-delivery {
+ display: none;
+}
+.div-formulario-take-away {
+    display: none;
+}
+/* Seccion forma de entrega Delivery & Take Away */
+.nombre-imput {
+    color: var(--amber);
+    margin-top: .6rem;
+}
+.input-form {
+    background-color: white;
+    border: 2px solid var(--amber);
+    border-radius: .3rem;
+    padding: .2rem;
+}
+/*  */
+.li-pago {
+    display: flex;
+    margin: .3rem 0;
+    align-items: center;
+    margin-left: .3rem;
+}
+.p-pago {
+    color: white;
+    font-weight: bold;
+    padding-left: .3rem;
+}
+.div-principal-total {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+.div-principal-total p {
+    font-size: 1.3em;
+    color: white;
+    text-transform: uppercase;
+}
+.boton-terminar-compra {
+    width: 40%;
+    display: flex;
+    flex-flow: row nowrap;
+    color: white;
+    margin: 1rem auto 0;
+    font-size: 1.2em;
+    background-color: var(--amber);
+    padding: .8rem .6rem;
+    border-radius: .3rem;
+    justify-content: center;
+    align-items: center;
+}
+.boton-terminar-compra a {
+    margin-left: .5rem;
+}
+
+
+/* Estilos Checkbox */
+
+.container {
+    display: block;
+    height: 1em;
+    width: 1em;
+    cursor: pointer;
+    position: relative;
+}
+
+.container input {
+    position: absolute;
+    transform: scale(0);
+}
+
+.container input:checked ~ .checkmark {
+  transform: rotate(45deg);
+  height: 1em;
+  width: 0.35em;
+  border-color: var(--amber);
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-radius: 0;
+}
+
+.container .checkmark {
+    display: block;
+    width: inherit;
+    height: inherit;
+    border: 2px solid var(--amber);
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+/* Clases interactivas */
+
+

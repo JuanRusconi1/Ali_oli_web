@@ -1,0 +1,26 @@
+{
+  "name": "proyecto_alioli",
+  "version": "1.0.0",
+  "description": "Proyecto \"Pagina web ali oli\".\r pagina web que trabaja para un comercio, ofreciendo serviciós como presentacion de productos gastronomicos, transferir pedidos al local, realizar pedidos, agregar y eliminar productos.\r Estas son algunas de las funciones que ofrece la pagina ademas por otro lado va a contar con un dashboard de administrador que va a ofrecer datos economicos de todo el local, siempre y cuando el administrador disponga de dichos datos al servidor, algunos de estos son:\r -total de ventas.\r -total de productos por categoria vendidos.\r -resumen semanal de ventas.\r -resumen mensual de ventas.\r este proyecto va a contar con una API de whatsapp, esta nos permite redireccionar los pedidos realizados en la pagina hacia el local.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "nodemon app.js",
+    "sequelize": "sequelize init"
+  },
+  "author": "Juan Rusconi.",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "method-override": "^3.0.0",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.1.0",
+    "node": "^19.1.0",
+    "sequelize": "^6.28.0",
+    "sequelize-cli": "^6.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
