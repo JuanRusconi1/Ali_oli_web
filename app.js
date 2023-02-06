@@ -4,7 +4,9 @@ const app = express();
 const path = require("path");
 const methodOverride = require("method-override");
 const mainRouter = require("./src/routes/mainRouter")
-const productRouter= require("./src/routes/productRouter")
+const productRouter = require("./src/routes/productRouter")
+const productsApiRouter = require("./src/routes/Api/productsApi");
+
 //Configuración 
 app.set("view engine", "ejs");
 app.use(express.static(path.resolve(__dirname, "public")));
@@ -17,6 +19,9 @@ app.set("views", path.resolve(__dirname,"./src/views"));
 //RUTAS
 app.use("/", mainRouter);
 app.use("/product", productRouter)
+
+//RUTAS Api 
+app.use("/api/products", productsApiRouter)
 
 
 //SERVIDOR 

@@ -46,4 +46,16 @@ window.addEventListener("load", function () {
             localStorage.setItem("carrito", JSON.stringify([{ id: e.target.dataset.id, cantidad: value}]))
         }
     })
+    
+    function calcularProductos(carrito) {
+        return carrito.reduce((acum, item) => acum += item.cantidad, 0);
+    }
+
+    let contador = document.querySelector(".contador")
+    let carrito = JSON.parse(localStorage.carrito)
+    
+    if (carrito) {
+        contador.innerText = calcularProductos(carrito)
+        
+    }
 })

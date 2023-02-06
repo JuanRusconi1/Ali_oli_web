@@ -3,25 +3,14 @@ const DB = require("../database/models")
 
 const productController = {
     detail: (req, res) => {
-        let {id} = req.params
+        let { id } = req.params
         DB.Product.findByPk(id)
-        .then(product => {
-
-            res.render("productOrder", {product})
-        })
-     
+            .then(product => {
+                res.render("productOrder", { product })
+            })
     },
-    order: async (req, res) => {
-        try {
-           
+    order:  (req, res) => {
             res.render("userCart")
-            
-
-        } catch (error) {
-           console.log(error);
-        }
-
-
     }
 }
 module.exports = productController

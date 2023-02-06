@@ -11,5 +11,19 @@ window.addEventListener("load", function () {
         })
 
     }
+    // let texting = `hola como estas?\nTe hablo para saber como subir un archivo`
+    // console.log(encodeURIComponent(texting))
+
+    function calcularProductos(carrito) {
+        return carrito.reduce((acum, item) => acum += item.cantidad, 0);
+    }
+
+    let contador = document.querySelector(".contador")
+    let carrito = JSON.parse(localStorage.carrito)
+
+    if (carrito) {
+        contador.innerText = calcularProductos(carrito)
+        
+    }
 })
 
