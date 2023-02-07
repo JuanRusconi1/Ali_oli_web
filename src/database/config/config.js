@@ -1,9 +1,9 @@
 module.exports = {
   "development": {
-    "username": "root",
-    "password": "",
-    "database": "alioli",
-    "host": "127.0.0.1",
+    "username": "phericsone_admin",
+    "password": "alioli2030",
+    "database": "phericsone_alioli",
+    "host": "phericsone.com.ar",
     "dialect": "mysql"
   },
   "test": {
