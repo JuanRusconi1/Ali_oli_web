@@ -7,6 +7,7 @@ const mainRouter = require("./src/routes/mainRouter")
 const productRouter = require("./src/routes/productRouter")
 const productsApiRouter = require("./src/routes/Api/productsApi");
 
+
 //Configuración 
 app.set("view engine", "ejs");
 app.use(express.static(path.resolve(__dirname, "public")));

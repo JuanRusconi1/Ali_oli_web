@@ -60,10 +60,10 @@
   font-size: 2em;
   color: #ffbf00;
   margin: 0.5rem;
-  transition: all .4s ease;
+  transition: all 0.4s ease;
 }
 .botones-cantidad i:active {
-    transform: scale(0.8);
+  transform: scale(0.8);
 }
 .numero-cantidad {
   font-size: 1.7em;
@@ -143,16 +143,16 @@
 /* Estilos Checkbox */
 
 .container {
-    display: block;
-    height: 1em;
-    width: 1em;
-    cursor: pointer;
-    position: relative;
+  display: block;
+  height: 1em;
+  width: 1em;
+  cursor: pointer;
+  position: relative;
 }
 
 .container input {
-    position: absolute;
-    transform: scale(0);
+  position: absolute;
+  transform: scale(0);
 }
 
 .container input:checked ~ .checkmark {
@@ -166,28 +166,28 @@
 }
 
 .container .checkmark {
-    display: block;
-    width: inherit;
-    height: inherit;
-    border: 2px solid var(--amber);
-    border-radius: 4px;
-    transition: all 0.3s;
+  display: block;
+  width: inherit;
+  height: inherit;
+  border: 2px solid var(--amber);
+  border-radius: 4px;
+  transition: all 0.3s;
 }
 .contenedor-boton-continuar {
-    width: 100%;
-    display: flex;
+  width: 100%;
+  display: flex;
   justify-content: center;
-  margin: 1rem;
+  margin: 1rem 0;
 }
 .boton-continuar {
-    width: 50%;
-    font-size: 1.1em;
-    font-weight: bold;
-    color: white;
-    background-color: var(--amber);
-    padding: 0.6rem;
-    border-radius: 0.5rem;
-    text-transform: uppercase;
+  width: 50%;
+  font-size: 1.1em;
+  font-weight: bold;
+  color: white;
+  background-color: var(--amber);
+  padding: 0.6rem;
+  border-radius: 0.5rem;
+  text-transform: uppercase;
 }
 
 /* Clases interactivas */

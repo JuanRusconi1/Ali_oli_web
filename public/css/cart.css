@@ -40,6 +40,18 @@ main {
     align-items: center;
     margin-bottom: .4rem;
 }
+.additionals {
+    width: 70%;
+    display: flex;
+    flex-flow: column nowrap;
+}
+.titulo-additional
+.div-additional {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
 .titulo-div {
     color: white;
     font-size: .8em;

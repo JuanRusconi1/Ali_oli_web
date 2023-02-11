@@ -16,9 +16,7 @@
             class="orden-img"
           />
         </div>
-        <p class="descripcion-orden">
-          <%=product.description%>
-        </p>
+        <p class="descripcion-orden"><%=product.description%></p>
         <div class="contenedor-cantidad">
           <p class="titulo-cantidad">cantidad</p>
         </div>
@@ -37,63 +35,37 @@
             rows="5"
           ></textarea>
         </div>
+        <% if (product.categories.name == "Pizzas" || product.categories.name == "Empanadas") { %>
+          
+          <% } else { %> 
         <div class="contenedor-adicionales">
           <p class="p-adicionales">Adicionales</p>
           <i class="fa-solid fa-chevron-down arrow"></i>
         </div>
         <div class="contenedor-adicional-columna">
+          <% salsas.forEach(salsa => { %>
           <div class="contenedor-adicional-tipo">
             <div class="contenedor-checkbox">
               <label class="container">
-                <input type="checkbox" name="barbacoa" />
+                <input type="checkbox" name="<%=salsa.id%>" />
                 <div class="checkmark"></div>
               </label>
-              <p class="adicional-titulo">Salsa barbacoa</p>
+              <p class="adicional-titulo"><%=salsa.name%></p>
             </div>
-            <p class="adicional-precio">$150</p>
+            <p class="adicional-precio">$<%=salsa.price%></p>
           </div>
-          <div class="contenedor-adicional-tipo">
-            <div class="contenedor-checkbox">
-              <label class="container">
-                <input type="checkbox" name="alioli" />
-                <div class="checkmark"></div>
-              </label>
-              <p class="adicional-titulo">Salsa ali oli</p>
-            </div>
-            <p class="adicional-precio">$150</p>
-          </div>
-          <div class="contenedor-adicional-tipo">
-            <div class="contenedor-checkbox">
-              <label class="container">
-                <input type="checkbox" name="guacamole" />
-                <div class="checkmark"></div>
-              </label>
-              <p class="adicional-titulo">Salsa guacamole</p>
-            </div>
-            <p class="adicional-precio">$150</p>
-          </div>
-          <div class="contenedor-adicional-tipo">
-            <div class="contenedor-checkbox">
-              <label class="container">
-                <input type="checkbox" name="cheddar" />
-                <div class="checkmark"></div>
-              </label>
-
-              <p class="adicional-titulo">Salsa cheddar</p>
-            </div>
-            <p class="adicional-precio">$150</p>
-          </div>
+          <% })} %>
         </div>
         <div class="contenedor-boton-continuar">
-          <a class="boton-continuar" href="/" data-id="<%=product.id%>">Continuar</a>
+          <a class="boton-continuar" href="/" data-id="<%=product.id%>"
+            >Continuar</a>
         </div>
       </div>
-       
+
       <a href="/product/order-detail" class="contenedor-div-carrito">
         <div class="carrito"><i class="fa-solid fa-basket-shopping"></i></div>
         <div class="contador">0</div>
       </a>
-        
     </main>
 
     <!--Include footer-->

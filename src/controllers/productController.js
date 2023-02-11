@@ -2,12 +2,13 @@ const path = require("path");
 const DB = require("../database/models")
 
 const productController = {
-    detail: (req, res) => {
+    detail: async (req, res) =>  {
         let { id } = req.params
-        DB.Product.findByPk(id)
-            .then(product => {
-                res.render("productOrder", { product })
+        let product = await DB.Product.findByPk(id, {
+            include: [{ association: "categories" }]
             })
+        let salsas = await  DB.Additional.findAll()
+                res.render("productOrder", { product, salsas})
     },
     order:  (req, res) => {
             res.render("userCart")

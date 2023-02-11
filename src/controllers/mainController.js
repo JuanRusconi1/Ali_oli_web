@@ -4,7 +4,7 @@ const mainController = {
     index:  (req, res) => {
         
             DB.Product.findAll({
-                include: [{ association: "categories" }],
+                include: [{ association: "categories" }]
                 })
             .then(productos => {
                 res.render("home", {productos})

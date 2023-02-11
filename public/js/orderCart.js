@@ -17,6 +17,7 @@ window.addEventListener("load", function () {
 
 
     /*Funciones para Carrito */
+
     function setCarritoVacio() {
         listCart.innerHTML = `<div class="titulo-div">No tienes productos en tu carrito</div>`
     }
@@ -28,11 +29,13 @@ window.addEventListener("load", function () {
     function calcularTotal(productos) {
         return productos.reduce((acum, producto) => acum += producto.precio * producto.cantidad, 0);
     }
-    
+
     let listCart = document.querySelector(".div-contenedor-item");
-    let carrito = JSON.parse(localStorage.carrito)
-    if (localStorage.carrito.length > 0) {
+    if (localStorage.carrito) {
+        let carrito = JSON.parse(localStorage.carrito)
         let productos = []
+        let additionals = []
+        let valorTotal = document.querySelector(".p-valor")
         carrito.forEach((item, i) => {
             fetch(`/api/products/${item.id}`)
                 .then(response => response.json())
@@ -47,25 +50,36 @@ window.addEventListener("load", function () {
                                 <i class="fa-solid fa-trash"></i>
                              </button>
                             </div>
-                        </div >`
+                            </div>
+                            <div class="additionals"></div>`
                         productos.push({ precio: product.data.price, cantidad: item.cantidad })
                     } else {
                         carrito.splice(i, 1)
                         localStorage.setItem("carrito", JSON.stringify(carrito))
                     }
                 }).then(() => {
-                    document.querySelector(".p-valor").innerText = `$${calcularTotal(productos)}`
+                        valorTotal.innerText = `$${calcularTotal(productos)}`
                     
+
+
                     let botonesEmiminar = document.querySelectorAll(".boton-eliminar")
                     let itemsLista = document.querySelectorAll(".div-item-lista")
                     /*Funcionalidad para eliminar un item del carrito */
                     botonesEmiminar.forEach((boton, i) => {
                         boton.addEventListener("click", (e) => {
                             carrito.splice(i, 1)
-                            localStorage.setItem("carrito", JSON.stringify(carrito))
-                            itemsLista[i].style.display = "none"
+                            itemsLista[i].style.display = "none";
+                            productos.splice(i, 1)
+                            localStorage.setItem("carrito", JSON.stringify(carrito));
+                            document.querySelector(".p-valor").innerText = `$${calcularTotal(productos)}`
+                            if (carrito.length == 0) {
+                                vaciarCarrito()
+                                setCarritoVacio()
+                                document.querySelector(".p-valor").innerText = "$0"
+                            }
                         })
                     })
+
                 })
         });
     } else {
