@@ -5,8 +5,12 @@ window.addEventListener("load", function () {
 
 
     let mas = document.querySelector(".mas")
-    let menos = document.querySelector(".menos")
-    let cantidad = document.querySelector(".numero-cantidad")
+    let menos = document.querySelectorAll(".menos")
+    let cantidad = document.querySelector(".numero-cantidad")    
+    
+    
+
+
     mas.addEventListener("click", () => {
         let valor = cantidad.innerHTML
         valor++
@@ -25,7 +29,7 @@ window.addEventListener("load", function () {
         arrowDown.classList.toggle("rotate")
         columnaAdicionales.classList.toggle("flex")
     })
-    /* Funciones agregar carrito */
+    /* Funcionalidad agregar carrito */
 
     let añadir = document.querySelector(".boton-continuar")
     let quantity = document.querySelector(".numero-cantidad")
@@ -33,13 +37,14 @@ window.addEventListener("load", function () {
     let salsas = document.querySelectorAll("input")
 
 
-    console.log(salsas[1].checked);
     añadir.addEventListener("click", (e) => {
-        let  adicional =  []
+        let adicional = []
         let value = parseFloat(quantity.innerText)
-        if (localStorage.carrito) {
-            let carrito = JSON.parse(localStorage.carrito)
+        if (sessionStorage.carrito) {
+            let carrito = JSON.parse(sessionStorage.carrito)
+            let storageAdicional = JSON.parse(sessionStorage.adicional)
             let index = carrito.findIndex(producto => producto.id == e.target.dataset.id)
+            console.log(storageAdicional);
             if (index != -1) {
                 carrito[index].cantidad = carrito[index].cantidad + value;
                 if (carrito[index].detalles == "") {
@@ -52,32 +57,37 @@ window.addEventListener("load", function () {
             } else {
                 salsas.forEach((salsa) => {
                     if (salsa.checked == true) {
-                        let numero = parseFloat(salsa.name)
-                        adicional.push(numero)
+                        let precio = parseFloat(salsa.dataset.price)
+                        let nombre = salsa.name
+                        adicional.push({ name: nombre, price: precio })
                     }
                 })
-                console.log(adicional);
-                carrito.push({ id: e.target.dataset.id, cantidad: value, detalles: detalles.value, salsas: adicional })
+                carrito.push({ id: e.target.dataset.id, cantidad: value, detalles: detalles.value })
+                storageAdicional.push({id: e.target.dataset.id, detail: adicional})              
             }
-            localStorage.setItem("carrito", JSON.stringify(carrito))
+            sessionStorage.setItem("carrito", JSON.stringify(carrito))
+            sessionStorage.setItem("adicional", JSON.stringify(storageAdicional))
         } else {
             salsas.forEach((salsa) => {
                 if (salsa.checked == true) {
-                    let numero = parseFloat(salsa.name)
-                    adicional.push(numero)
+                    let precio = parseFloat(salsa.dataset.price)
+                    let nombre = salsa.name
+                    adicional.push({ name: nombre, price: precio })
                 }
-            })
-            console.log(adicional);
-            localStorage.setItem("carrito", JSON.stringify([{ id: e.target.dataset.id, cantidad: value, detalles: detalles.value, salsas: adicional }]))
-        } 
+            })       
+            sessionStorage.setItem("carrito", JSON.stringify([{ id: e.target.dataset.id, cantidad: value, detalles: detalles.value }]))
+                sessionStorage.setItem("adicional", JSON.stringify([{id: e.target.dataset.id, detail: adicional}]))
+            
+        }
     })
 
+    // funcion para mostrar la cantidad de productos en el carrito
     function calcularProductos(carrito) {
         return carrito.reduce((acum, item) => acum += item.cantidad, 0);
     }
 
     let contador = document.querySelector(".contador")
-    let carrito = JSON.parse(localStorage.carrito)
+    let carrito = JSON.parse(sessionStorage.carrito)
 
     if (carrito) {
         contador.innerText = calcularProductos(carrito)

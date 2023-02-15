@@ -8,7 +8,8 @@ const productController = {
             include: [{ association: "categories" }]
             })
         let salsas = await  DB.Additional.findAll()
-                res.render("productOrder", { product, salsas})
+        let productos = await DB.Product.findAll()
+                res.render("productOrder", { product, salsas, productos})
     },
     order:  (req, res) => {
             res.render("userCart")

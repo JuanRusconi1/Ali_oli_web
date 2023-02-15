@@ -5,14 +5,16 @@ window.addEventListener("load", () => {
     let divApertura = document.querySelector(".abierto");
 
     setInterval(() => {
-        let tiempoActual = new Date();
-        let hora = tiempoActual.getHours();
-        
-        if(hora == 20) {
+        let tiempo = new Date();
+        let hora = tiempo.getHours();
+        let minutos = tiempo.getMinutes();
+        let tiempoActual = `${hora}:${minutos}`
+        console.log(tiempoActual);
+
+        if((hora >= 20 && hora < 24) && (minutos > 0 && minutos <= 59)) {
              divApertura.style.backgroundColor = "#95c623"
              divApertura.innerHTML = `<i class="fa-solid fa-clock"></i> Abierto`    
-        }
-        if(hora == 23) {
+        } else {
             divApertura.style.backgroundColor = "tomato"
             divApertura.innerHTML = `<i class="fa-solid fa-clock"></i> Cerrado`
        }

@@ -19,7 +19,7 @@ window.addEventListener("load", function () {
     }
 
     let contador = document.querySelector(".contador")
-    let carrito = JSON.parse(localStorage.carrito)
+    let carrito = JSON.parse(sessionStorage.carrito)
 
     if (carrito) {
         contador.innerText = calcularProductos(carrito)

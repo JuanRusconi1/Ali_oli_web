@@ -41,20 +41,29 @@ main {
     margin-bottom: .4rem;
 }
 .additionals {
-    width: 70%;
+    width: 50%;
     display: flex;
     flex-flow: column nowrap;
 }
-.titulo-additional
 .div-additional {
     width: 100%;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
+    padding-left: 1rem;
+    margin-bottom: .2rem;
+}
+.titulo-additional {
+    font-size: .75em;
+    color: white;
+}
+.precio-additional {
+    font-size: .8em;
+    color: white;
 }
 .titulo-div {
     color: white;
-    font-size: .8em;
+    font-size: .9em;
     width: 60%;
 }
 .div-lista-precio {

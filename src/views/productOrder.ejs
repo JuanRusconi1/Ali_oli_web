@@ -20,6 +20,29 @@
         <div class="contenedor-cantidad">
           <p class="titulo-cantidad">cantidad</p>
         </div>
+        <% if (product.name.toLowerCase().includes("docena")) { %>
+        <div class="cantidad-maxima-empanadas">
+          <div class="div-contenedor-maxima">
+            <p class="titulo-maxima">0/12</p>
+          </div>
+        </div>
+        <div class="div-elegir-empanadas">
+          <% productos.forEach(products => { %> <% if
+          (products.name.toLowerCase().includes("empanada")) { %>
+            <% if (products.id !== 42) { %>
+              <div class="div-tipo-empanada">
+                <div class="nombre-tipo-empanada"><%= products.name %></div>
+                <div class="botones-cantidad-empanada">
+                  <i class="fa-solid fa-minus menos"></i>
+                  <p class="cantidad-empanada">0</p>
+                  <i class="fa-solid fa-plus mas"></i>
+                </div>
+              </div>
+              <% } %>
+          <% }}) %>
+        </div>
+
+        <% } else { %>
         <div class="botones-cantidad">
           <i class="fa-solid fa-minus menos"></i>
           <p class="numero-cantidad">1</p>
@@ -35,9 +58,8 @@
             rows="5"
           ></textarea>
         </div>
-        <% if (product.categories.name == "Pizzas" || product.categories.name == "Empanadas") { %>
-          
-          <% } else { %> 
+        <% } %> <% if (product.categories.name == "Pizzas" ||
+        product.categories.name == "Empanadas") { %> <% } else { %>
         <div class="contenedor-adicionales">
           <p class="p-adicionales">Adicionales</p>
           <i class="fa-solid fa-chevron-down arrow"></i>
@@ -47,7 +69,11 @@
           <div class="contenedor-adicional-tipo">
             <div class="contenedor-checkbox">
               <label class="container">
-                <input type="checkbox" name="<%=salsa.id%>" />
+                <input
+                  type="checkbox"
+                  name="<%=salsa.name%>"
+                  data-price="<%=salsa.price%>"
+                />
                 <div class="checkmark"></div>
               </label>
               <p class="adicional-titulo"><%=salsa.name%></p>
@@ -58,7 +84,8 @@
         </div>
         <div class="contenedor-boton-continuar">
           <a class="boton-continuar" href="/" data-id="<%=product.id%>"
-            >Continuar</a>
+            >Continuar</a
+          >
         </div>
       </div>
 
@@ -69,7 +96,11 @@
     </main>
 
     <!--Include footer-->
-    <%- include("partials/footer") %>
+    <%- include("partials/footer") %> <% if
+    (product.name.toLowerCase().includes("docena")) { %>
+    <script src="/js/productOrderDocena.js"></script>
+    %> <% } else {%>
     <script src="/js/productOrder.js"></script>
+    %> <% } %>
   </body>
 </html>

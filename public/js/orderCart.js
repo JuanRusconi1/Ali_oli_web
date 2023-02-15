@@ -23,7 +23,7 @@ window.addEventListener("load", function () {
     }
 
     function vaciarCarrito() {
-        localStorage.removeItem("carrito")
+        sessionStorage.removeItem("carrito")
     }
 
     function calcularTotal(productos) {
@@ -31,16 +31,19 @@ window.addEventListener("load", function () {
     }
 
     let listCart = document.querySelector(".div-contenedor-item");
-    if (localStorage.carrito) {
-        let carrito = JSON.parse(localStorage.carrito)
+    if (sessionStorage.carrito) {
+        let carrito = JSON.parse(sessionStorage.carrito)
+        let adicionales = JSON.parse(sessionStorage.adicional)
         let productos = []
-        let additionals = []
+        let precioAdicionales = []
         let valorTotal = document.querySelector(".p-valor")
         carrito.forEach((item, i) => {
             fetch(`/api/products/${item.id}`)
                 .then(response => response.json())
                 .then(product => {
                     if (product.data) {
+                        let id = product.data.id
+                        console.log(id);
                         listCart.innerHTML +=
                             `<div class="div-item-lista">
                                 <div class="titulo-div">${item.cantidad}x ${product.data.name}</div>
@@ -53,13 +56,27 @@ window.addEventListener("load", function () {
                             </div>
                             <div class="additionals"></div>`
                         productos.push({ precio: product.data.price, cantidad: item.cantidad })
+                        let contenedorAdicionales = document.querySelectorAll(".additionals")
+                        adicionales.forEach((adicional, i)=> {
+                            if (adicional.id == id && adicional.detail.length > 0 ) {
+                                let salsas = adicional.detail
+                                salsas.forEach(salsa => {
+                                    contenedorAdicionales[i].innerHTML += 
+                                    `<div class="div-additional">
+                                    <p class="titulo-additional">${salsa.name}</p>
+                                    <p class="precio-additional">$${salsa.price}</p>
+                                    </div>`
+                                })
+                            }
+                        })
+                        
                     } else {
                         carrito.splice(i, 1)
-                        localStorage.setItem("carrito", JSON.stringify(carrito))
+                        sessionStorage.setItem("carrito", JSON.stringify(carrito))
                     }
                 }).then(() => {
+
                         valorTotal.innerText = `$${calcularTotal(productos)}`
-                    
 
 
                     let botonesEmiminar = document.querySelectorAll(".boton-eliminar")
@@ -70,7 +87,7 @@ window.addEventListener("load", function () {
                             carrito.splice(i, 1)
                             itemsLista[i].style.display = "none";
                             productos.splice(i, 1)
-                            localStorage.setItem("carrito", JSON.stringify(carrito));
+                            sessionStorage.setItem("carrito", JSON.stringify(carrito));
                             document.querySelector(".p-valor").innerText = `$${calcularTotal(productos)}`
                             if (carrito.length == 0) {
                                 vaciarCarrito()
