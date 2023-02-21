@@ -17,6 +17,34 @@
           />
         </div>
         <p class="descripcion-orden"><%=product.description%></p>
+        <% if (product.name.toLowerCase().includes("pizza")) { %>
+          <div class="elegir-cantidad">
+            <div class="contenedor-pizza">
+              <label class="container">
+                <input
+                  type="checkbox"
+                  name=""
+                  data-price=""
+                />
+                <div class="checkmark"></div>
+              </label>
+              <p class="adicional-titulo">Media</p>
+            </div>
+            <div class="contenedor-pizza">
+              <label class="container">
+                <input
+                  type="checkbox"
+                  name="<%=product.name%>"
+                  data-price="<%=product.price%>"
+                  data-id="<%=product.id%>"
+                  checked
+                />
+                <div class="checkmark"></div>
+              </label>
+              <p class="adicional-titulo">completa</p>
+            </div>
+          </div>
+          <% }%>
         <div class="contenedor-cantidad">
           <p class="titulo-cantidad">cantidad</p>
         </div>
@@ -30,7 +58,7 @@
           <% productos.forEach(products => { %> <% if
           (products.name.toLowerCase().includes("empanada")) { %>
             <% if (products.id !== 42) { %>
-              <div class="div-tipo-empanada">
+              <div class="div-tipo-empanada" data-id="<%= products.id%>">
                 <div class="nombre-tipo-empanada"><%= products.name %></div>
                 <div class="botones-cantidad-empanada">
                   <i class="fa-solid fa-minus menos"></i>
@@ -59,7 +87,9 @@
           ></textarea>
         </div>
         <% } %> <% if (product.categories.name == "Pizzas" ||
-        product.categories.name == "Empanadas") { %> <% } else { %>
+        product.categories.name == "Empanadas") { %>
+          <div class="error-active"></div>
+           <% } else { %>
         <div class="contenedor-adicionales">
           <p class="p-adicionales">Adicionales</p>
           <i class="fa-solid fa-chevron-down arrow"></i>
@@ -81,14 +111,16 @@
             <p class="adicional-precio">$<%=salsa.price%></p>
           </div>
           <% })} %>
-        </div>
+          </div>
         <div class="contenedor-boton-continuar">
-          <a class="boton-continuar" href="/" data-id="<%=product.id%>"
-            >Continuar</a
-          >
+          <% if (product.name.toLowerCase().includes("pizza")) { %>
+            <a class="boton-continuar-pizza" href="#" data-price="<%=product.price%>" data-id="<%=product.id%>" >Continuar</a>
+            <% } else { %>
+              <a class="boton-continuar" href="#"  data-id="<%=product.id%>" data-price="<%=product.price%>">Continuar</a>
+              <% } %>
         </div>
-      </div>
-
+      </div> 
+     
       <a href="/product/order-detail" class="contenedor-div-carrito">
         <div class="carrito"><i class="fa-solid fa-basket-shopping"></i></div>
         <div class="contador">0</div>
@@ -99,8 +131,11 @@
     <%- include("partials/footer") %> <% if
     (product.name.toLowerCase().includes("docena")) { %>
     <script src="/js/productOrderDocena.js"></script>
-    %> <% } else {%>
-    <script src="/js/productOrder.js"></script>
-    %> <% } %>
+    <%   } else { %> 
+      <script src="/js/productOrder.js"></script>
+    <% } %>
+    <% if (product.name.toLowerCase().includes("pizza")) { %>
+      <script src="/js/pizzaOrder.js"></script>
+      <% }%>
   </body>
 </html>

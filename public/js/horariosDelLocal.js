@@ -9,7 +9,6 @@ window.addEventListener("load", () => {
         let hora = tiempo.getHours();
         let minutos = tiempo.getMinutes();
         let tiempoActual = `${hora}:${minutos}`
-        console.log(tiempoActual);
 
         if((hora >= 20 && hora < 24) && (minutos > 0 && minutos <= 59)) {
              divApertura.style.backgroundColor = "#95c623"

@@ -16,31 +16,31 @@
         <div class="div-principal-compra">
           <div class="div-entrega-compra">forma de entrega</div>
           <div class="div-botones">
-            <div class="div-tipo-entrega">Delivery</div>
-            <div class="div-tipo-entrega">Take Away</div>
+            <div class="div-tipo-entrega" data-active="0">Delivery</div>
+            <div class="div-tipo-entrega" data-active="0">Take Away</div>
           </div>
           <div class="div-formulario-delivery">
             <label for="nombre"
               ><p class="nombre-imput">Nombre de quien recibe...</p>
-              <input class="input-form" type="text" id="nombre" />
+              <input class="input-form delivery" type="text" name="nombre"  />
             </label>
             <label for="direccion"
               ><p class="nombre-imput">Direcíon</p>
-              <input class="input-form" type="text" id="direccion" />
+              <input class="input-form delivery" type="text" name="direccion" />
             </label>
             <label for="hora"
               ><p class="nombre-imput">Cuando te lo enviamos ?</p>
-              <input class="input-form" type="time" id="hora" />
+              <input class="input-form delivery" type="time" name="hora" />
             </label>
           </div>
           <div class="div-formulario-take-away">
             <label for="nombre"
-              ><p class="nombre-imput">Nombre de quien retira</p>
-              <input class="input-form" type="text" id="nombre" />
+              ><p class="nombre-imput ">Nombre de quien retira</p>
+              <input class="input-form delivery" type="text" name="nombre" />
             </label>
             <label for="hora"
-              ><p class="nombre-imput">Hora de retiro</p>
-              <input class="input-form" type="time" id="hora" />
+              ><p class="nombre-imput ">Hora de retiro</p>
+              <input class="input-form delivery" type="time" name="hora" />
             </label>
           </div>
         </div>
@@ -50,21 +50,21 @@
             <ul class="ul-lista-pago">
               <li class="li-pago">
                 <label class="container">
-                  <input type="checkbox" />
+                  <input type="checkbox" name="efectivo"/>
                   <div class="checkmark"></div>
                 </label>
                 <p class="p-pago">efectivo</p>
               </li>
               <li class="li-pago">
                 <label class="container">
-                  <input type="checkbox" />
+                  <input type="checkbox" name="transferencia"/>
                   <div class="checkmark"></div>
                 </label>
                 <p class="p-pago">transferencia</p>
               </li>
               <li class="li-pago">
                 <label class="container">
-                  <input type="checkbox" />
+                  <input type="checkbox" name="tarjeta de debito"/>
                   <div class="checkmark"></div>
                 </label>
                 <p class="p-pago">tarjeta de debito</p>

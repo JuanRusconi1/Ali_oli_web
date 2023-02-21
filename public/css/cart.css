@@ -23,6 +23,9 @@ main {
 }
 .div-principal-compra {
     margin: 1rem .2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 .div-titulo-compra {
     font-size: 1.1em;
@@ -33,11 +36,21 @@ main {
     color: var(--amber);
     margin-bottom: .6rem;
 }
-.div-item-lista {
+.div-contenedor-item {
+    width: 100%;
+}
+.div-item {
+    width: 100%;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
+}
+
+.div-item-lista {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
     margin-bottom: .4rem;
 }
 .additionals {

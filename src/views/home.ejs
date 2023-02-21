@@ -11,8 +11,7 @@
       </div>
       <div class="div-titulo titulo"><p class="p-titulo">Lomos</p></div>
       <div class="columna-div-principal">
-        <% productos.forEach(producto => { %> <% if (producto.categoryId == 1) {
-        %>
+        <% productos.forEach(producto => {  if (producto.categoryId == 1) { %>
 
         <div class="lista-div-principal">
           <div class="imagen-div">
@@ -31,12 +30,11 @@
             <a class="boton-a" href="/product/buy/<%=producto.id%> "><i class="fa-solid fa-plus" data-id="<%=producto.id%>"></i>pedir</a>
           </div>
         </div>
-        <% } %> <% }) %>
+        <% }  }) %>
       </div>
       <div class="div-titulo titulo"><p class="p-titulo">Hamburguesas</p></div>
       <div class="columna-div-principal">
-        <% productos.forEach(producto => { %> <% if (producto.categoryId == 2) {
-        %>
+        <% productos.forEach(producto => {  if (producto.categoryId == 2) { %>
 
         <div class="lista-div-principal">
           <div class="imagen-div">
@@ -55,13 +53,12 @@
             <a class="boton-a" href="/product/buy/<%=producto.id%> "><i class="fa-solid fa-plus" data-id="<%=producto.id%>"></i>pedir</a>
           </div>
         </div>
-        <% } %> <% }) %>
+        <% }  }) %>
       </div>
       <div class="div-titulo titulo"><p class="p-titulo">Pizzas</p></div>
       <div class="columna-div-principal">
-        <% productos.forEach(producto => { %> <% if (producto.categoryId == 5) {
-        %>
-
+        <% productos.forEach(producto => {   if (producto.categoryId == 5) { %>
+          
         <div class="lista-div-principal">
           <div class="imagen-div">
             <img
@@ -71,20 +68,22 @@
             />
           </div>
           <div class="titulos-div">
-            <p class="titulo-nombre-p"><%=producto.name%></p>
+            <p class="titulo-nombre-p pizza"><%=producto.name%></p>
             <p class="titulo-descripcion-p"><%=producto.description%></p>
-            <p class="titulo-precio-p">$<%=producto.price%></p>
+            
+              
+              <p class="titulo-precio-p media-price">$<%=producto.price%></p>
+            
           </div>
           <div class="boton-div">
             <a class="boton-a" href="/product/buy/<%=producto.id%> "><i class="fa-solid fa-plus" data-id="<%=producto.id%>"></i>pedir</a>
           </div>
         </div>
-        <% } %> <% }) %>
+        <% }}) %>
       </div>
       <div class="div-titulo titulo"><p class="p-titulo">Burritos</p></div>
       <div class="columna-div-principal">
-        <% productos.forEach(producto => { %> <% if (producto.categoryId == 3) {
-        %>
+        <% productos.forEach(producto => {  if (producto.categoryId == 3) { %>
 
         <div class="lista-div-principal">
           <div class="imagen-div">
@@ -103,20 +102,18 @@
             <a class="boton-a" href="/product/buy/<%=producto.id%> "><i class="fa-solid fa-plus" data-id="<%=producto.id%>"></i>pedir</a>
           </div>
         </div>
-        <% } %> <% }) %>
+        <% }  }) %>
       </div>
       <div class="div-titulo titulo"><p class="p-titulo">Quesadillas</p></div>
       <div class="columna-div-principal">
-        <% productos.forEach(producto => { %> <% if (producto.categoryId == 4) {
-        %>
+        <% productos.forEach(producto => {  if (producto.categoryId == 4) { %>
 
         <div class="lista-div-principal">
           <div class="imagen-div">
             <img
               class="imagen-img"
               src="/images/products/<%=producto.image%> "
-              alt="imagen"
-            />
+              alt="imagen"/>
           </div>
           <div class="titulos-div">
             <p class="titulo-nombre-p"><%=producto.name%></p>
@@ -124,14 +121,14 @@
             <p class="titulo-precio-p">$<%=producto.price%></p>
           </div>
           <div class="boton-div">
-            <a class="boton-a" href="/product/buy/<%=producto.id%> "><i class="fa-solid fa-plus" data-id="<%=producto.id%>"></i>pedir</a>
+            <a class="boton-a" href="/product/buy/<%=producto.id%>"><i class="fa-solid fa-plus" data-id="<%=producto.id%>"></i>pedir</a>
           </div>
         </div>
-        <% } %> <% }) %>
+        <% }  }) %>
       </div>
       <div class="div-titulo titulo"><p class="p-titulo">Empanadas</p></div>
       <div class="columna-div-principal">
-        <% productos.forEach(producto => { %> <% if (producto.categoryId == 6) {
+        <% productos.forEach(producto => {  if (producto.categoryId == 6) {
         %>
 
         <div class="lista-div-principal">
@@ -151,11 +148,11 @@
             <a class="boton-a" href="/product/buy/<%=producto.id%> "><i class="fa-solid fa-plus" data-id="<%=producto.id%>"></i>pedir</a>
           </div>
         </div>
-        <% } %> <% }) %>
+        <% }  }) %>
       </div>
       <div class="div-titulo titulo"><p class="p-titulo">Entradas</p></div>
       <div class="columna-div-principal">
-        <% productos.forEach(producto => { %> <% if (producto.categoryId == 7) {
+        <% productos.forEach(producto => {  if (producto.categoryId == 7) {
         %>
 
         <div class="lista-div-principal">
@@ -177,7 +174,7 @@
             </a>
           </div>
         </div>
-        <% } %> <% }) %>
+        <% }  }) %>
       </div>       
        <a href="/product/order-detail" class="contenedor-div-carrito">
          <div class="carrito"><i class="fa-solid fa-basket-shopping"></i></div>

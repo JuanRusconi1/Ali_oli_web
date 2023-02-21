@@ -58,7 +58,6 @@
   color: black;
   padding: .6rem 1rem;
   border: white 1px solid;
-  box-shadow: rgba(255, 255, 255, 0.19) 0px 10px 20px, rgba(255, 255, 255, 0.23) 0px 6px 6px;
   border-radius: .8rem;
 }
 .div-elegir-empanadas{
@@ -192,7 +191,34 @@
   color: white;
   margin: 0.3rem;
 }
-
+.elegir-cantidad {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.contenedor-pizza {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+}
+.error-active {
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+.error {
+  width: 60%;
+  color: red;
+  font-weight: bold;
+  border: 1px solid red;
+  border-radius: 1rem;
+  padding: .8rem;
+  background-color: rgb(250, 129, 108);
+  opacity: .9;
+}
 /* Estilos Checkbox */
 
 .container {
@@ -232,7 +258,7 @@
   justify-content: center;
   margin: 1rem 0;
 }
-.boton-continuar {
+.boton-continuar, .boton-continuar-pizza {
   width: 50%;
   font-size: 1.1em;
   font-weight: bold;
