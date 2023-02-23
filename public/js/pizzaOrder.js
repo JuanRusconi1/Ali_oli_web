@@ -12,13 +12,13 @@ window.addEventListener("load", function () {
         .then(productos => {
             productos.data.forEach((pizza) => {
                 if (pizza.name == titulo && pizza.categoryId == 8) {
-                    checkbox[0].name = pizza.name;
+                    checkbox[0].name = `Media ${pizza.name}`;
                     checkbox[0].dataset.price = pizza.price
                     checkbox[0].dataset.id = pizza.id
                 }
             });
         })
-    //deselecionar le checkbox contrario al que estamos activando
+    //deselecionar el checkbox contrario al que estamos activando
     let info = { name: checkbox[1].name, price: checkbox[1].dataset.price }
     checkbox.forEach((boton, i) => {
         checkbox[i].addEventListener("click", () => {

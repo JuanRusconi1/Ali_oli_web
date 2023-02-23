@@ -73,7 +73,6 @@ main {
   min-height: 41rem ;
   padding-bottom: 2rem; 
   text-align: center;
-  
 }
 
 .div-titulo {
@@ -181,7 +180,6 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.6rem;
   font-weight: bold;
   flex: 2;
 }
@@ -193,12 +191,19 @@ main {
   background-color: #ffcb2f;
   border-radius: 0.5rem;
   width: 3rem;
-  padding: 0.5rem;
+  padding: .5rem .8rem;
   margin: 0.1rem;
+  color: black;
+  font-size: .7em ;
+  transition: transform .3 ease;
 }
 .boton-a i {
   margin: 0.1rem;
 }
+.boton-a:active {
+  transform: scale(.9);
+}
+
 
 .contenedor-div-carrito{
   position: fixed;

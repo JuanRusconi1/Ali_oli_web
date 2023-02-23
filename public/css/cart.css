@@ -46,7 +46,9 @@ main {
     justify-content: space-between;
     align-items: center;
 }
-
+.error-input, .error-payment {
+    color: red; 
+}
 .div-item-lista {
     display: flex;
     flex-flow: column nowrap;
