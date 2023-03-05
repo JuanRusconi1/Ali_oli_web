@@ -1,203 +1,203 @@
 main {
-    width: 100%;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    text-align: initial;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: initial;
 }
 .div-principal-orden {
-    width: 90%;
-    display: flex;
-    flex-flow: column nowrap;
-    padding: .6rem;
-    margin-top: 1rem;
+  width: 90%;
+  display: flex;
+  flex-flow: column nowrap;
+  padding: 0.6rem;
+  margin-top: 1rem;
 }
 .p-titulo-pedido {
-    /* text-align: center; */
-    color: white;
-    font-size: 1.3em;
-    font-weight: bold;
-    display: inline-block;
-    border-bottom: 2px solid white;
-    padding-bottom: .2rem;
+  /* text-align: center; */
+  color: white;
+  font-size: 1.3em;
+  font-weight: bold;
+  display: inline-block;
+  border-bottom: 2px solid white;
+  padding-bottom: 0.2rem;
 }
 .div-principal-compra {
-    margin: 1rem .2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  margin: 1rem 0.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 .div-titulo-compra {
-    font-size: 1.1em;
-    text-transform: uppercase;
-    padding-bottom: .2rem;
-    display: inline-block;
-    border-bottom: 2px solid var(--amber);
-    color: var(--amber);
-    margin-bottom: .6rem;
+  font-size: 1.1em;
+  text-transform: uppercase;
+  padding-bottom: 0.2rem;
+  display: inline-block;
+  border-bottom: 2px solid var(--amber);
+  color: var(--amber);
+  margin-bottom: 0.6rem;
 }
 .div-contenedor-item {
-    width: 100%;
+  width: 100%;
 }
 .div-item {
-    width: 100%;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    align-items: center;
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
 }
-.error-input, .error-payment {
-    color: red; 
+.error-input,
+.error-payment {
+  color: red;
 }
 .div-item-lista {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    margin-bottom: .4rem;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  margin-bottom: 0.4rem;
 }
 .additionals {
-    width: 50%;
-    display: flex;
-    flex-flow: column nowrap;
+  width: 50%;
+  display: flex;
+  flex-flow: column nowrap;
 }
 .div-additional {
-    width: 100%;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    padding-left: 1rem;
-    margin-bottom: .2rem;
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  padding-left: 1rem;
+  margin-bottom: 0.2rem;
 }
 .titulo-additional {
-    font-size: .75em;
-    color: white;
+  font-size: 0.75em;
+  color: white;
 }
 .precio-additional {
-    font-size: .8em;
-    color: white;
+  font-size: 0.8em;
+  color: white;
 }
 .titulo-div {
-    color: white;
-    font-size: .9em;
-    width: 60%;
+  color: white;
+  font-size: 0.9em;
+  width: 60%;
 }
 .div-lista-precio {
-    display: flex;
-    align-items: center;
-    color: white;
-    font-size: 1em;
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 1em;
 }
 .boton-eliminar {
-    background-color: tomato;
-    padding: .3rem;
-    font-size: .8em;
-    text-align: center;
-    margin-left: .5em;
-    transition: all .4s ease;
+  background-color: tomato;
+  padding: 0.3rem;
+  font-size: 0.8em;
+  text-align: center;
+  margin-left: 0.5em;
+  transition: all 0.4s ease;
 }
 .boton-eliminar:active {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 .div-entrega-compra {
-    font-size: 1.1em;
-    text-transform: uppercase;
-    padding-bottom: .2rem;
-    display: inline-block;
-    border-bottom: 2px solid var(--amber);
-    color: var(--amber);
-    margin-bottom: .6rem;
+  font-size: 1.1em;
+  text-transform: uppercase;
+  padding-bottom: 0.2rem;
+  display: inline-block;
+  border-bottom: 2px solid var(--amber);
+  color: var(--amber);
+  margin-bottom: 0.6rem;
 }
 .div-botones {
-    width: 100%;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: flex-start;
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
 }
 .div-tipo-entrega {
-    background-color: white;
-    color: var(--amber);
-    border: 1px solid var(--amber);
-    border-radius: .2rem;
-    padding: .7rem .4rem;
-    margin-right: 1rem;
-    transition: all .5s ;
+  background-color: white;
+  color: var(--amber);
+  border: 1px solid var(--amber);
+  border-radius: 0.2rem;
+  padding: 0.7rem 0.4rem;
+  margin-right: 1rem;
+  transition: all 0.5s;
 }
 .div-tipo-entrega.active {
-    background-color: var(--amber);
-    color: white;
+  background-color: var(--amber);
+  color: white;
 }
 .div-formulario-delivery {
- display: none;
+  display: none;
 }
 .div-formulario-take-away {
-    display: none;
+  display: none;
 }
 /* Seccion forma de entrega Delivery & Take Away */
 .nombre-imput {
-    color: var(--amber);
-    margin-top: .6rem;
+  color: var(--amber);
+  margin-top: 0.6rem;
 }
 .input-form {
-    background-color: white;
-    border: 2px solid var(--amber);
-    border-radius: .3rem;
-    padding: .2rem;
+  background-color: white;
+  border: 2px solid var(--amber);
+  border-radius: 0.3rem;
+  padding: 0.2rem;
 }
 /*  */
 .li-pago {
-    display: flex;
-    margin: .3rem 0;
-    align-items: center;
-    margin-left: .3rem;
+  display: flex;
+  margin: 0.3rem 0;
+  align-items: center;
+  margin-left: 0.3rem;
 }
 .p-pago {
-    color: white;
-    font-weight: bold;
-    padding-left: .3rem;
+  color: white;
+  font-weight: bold;
+  padding-left: 0.3rem;
 }
 .div-principal-total {
-    width: 100%;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    margin-top: 2rem;
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  margin-top: 2rem;
 }
 .div-principal-total p {
-    font-size: 1.3em;
-    color: white;
-    text-transform: uppercase;
+  font-size: 1.3em;
+  color: white;
+  text-transform: uppercase;
 }
 .boton-terminar-compra {
-    width: 40%;
-    display: flex;
-    flex-flow: row nowrap;
-    color: white;
-    margin: 1rem auto 0;
-    font-size: 1.2em;
-    background-color: var(--amber);
-    padding: .8rem .6rem;
-    border-radius: .3rem;
-    justify-content: center;
-    align-items: center;
+  width: 40%;
+  display: flex;
+  flex-flow: row nowrap;
+  color: white;
+  margin: 1rem auto 0;
+  font-size: 1.2em;
+  background-color: var(--amber);
+  padding: 0.8rem 0.6rem;
+  border-radius: 0.3rem;
+  justify-content: center;
+  align-items: center;
 }
 .boton-terminar-compra a {
-    margin-left: .5rem;
+  margin-left: 0.5rem;
 }
-
 
 /* Estilos Checkbox */
 
 .container {
-    display: block;
-    height: 1em;
-    width: 1em;
-    cursor: pointer;
-    position: relative;
+  display: block;
+  height: 1em;
+  width: 1em;
+  cursor: pointer;
+  position: relative;
 }
 
 .container input {
-    position: absolute;
-    transform: scale(0);
+  position: absolute;
+  transform: scale(0);
 }
 
 .container input:checked ~ .checkmark {
@@ -211,14 +211,69 @@ main {
 }
 
 .container .checkmark {
-    display: block;
-    width: inherit;
-    height: inherit;
-    border: 2px solid var(--amber);
-    border-radius: 4px;
-    transition: all 0.3s;
+  display: block;
+  width: inherit;
+  height: inherit;
+  border: 2px solid var(--amber);
+  border-radius: 4px;
+  transition: all 0.3s;
 }
 
 /* Clases interactivas */
 
-
+@media (min-width: 768px) {
+  .div-principal-orden {
+    width: 55%;
+  }
+  .p-titulo-pedido {
+    font-size: 1.8em;
+  }
+  .div-titulo-compra {
+    font-size: 1.3em;
+  }
+  .titulo-div {
+    font-size: 1.2em;
+  }
+  .div-lista-precio {
+    font-size: 1.2em;
+  }
+  .titulo-additional,
+  .precio-additional {
+    font-size: 1em;
+  }
+  .boton-eliminar {
+    font-size: 1.2em;
+  }
+  .div-entrega-compra {
+    font-size: 1.3em;
+  }
+  .div-tipo-entrega {
+    font-size: 1.3em;
+  }
+  .nombre-imput,
+  .input-form,
+  .error-input,
+  .p-pago,
+  .error-payment {
+    font-size: 1.2em;
+  }
+  .container {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  .container input:checked ~ .checkmark {
+    height: 1.5em;
+    width: 0.6em;
+  }
+  .li-pago {
+    margin: .6rem 0;
+  }
+  .div-principal-total p, .boton-terminar-compra {
+    font-size: 1.5em;
+  }
+  @media (min-width: 1024px) {
+    .div-principal-orden {
+      width: 45%;
+    }
+  }
+}

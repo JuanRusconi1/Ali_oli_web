@@ -74,9 +74,7 @@ window.addEventListener("load", function () {
                 if (adicional.id == id && adicional.detail) {
                     if (adicional.detail.length > 0) {
                         if (adicional.id == 42) {
-                            // console.log(adicional.detail.length);
-                            // contador ++
-                            // if (contador == 1) {
+
                             let empanadas = adicionales[i].detail;
                             empanadas.forEach(salsa => {
                                 contenedorAdicionales[i].innerHTML +=
@@ -100,9 +98,8 @@ window.addEventListener("load", function () {
                 }
             })
         });
-        console.log(adicionales);
-        console.log(totalAdicionales(adicionales));
-        // + totalAdicionales(adicionales)
+
+
         valorTotal.innerText = `$${calcularTotal(carrito) + totalAdicionales(adicionales)}`
 
         let botonesEmiminar = document.querySelectorAll(".boton-eliminar")
@@ -129,10 +126,9 @@ window.addEventListener("load", function () {
                 })
                 sessionStorage.setItem("adicional", JSON.stringify(adicionales))
                 sessionStorage.setItem("carrito", JSON.stringify(carrito));
-                console.log(adicionales);
-                console.log(carrito);
+
                 valorTotal.innerText = `$${calcularTotal(carrito) + totalAdicionales(adicionales)}`
-                console.log(valorTotal.innerText);
+
                 if (carrito.length == 0) {
                     vaciarCarrito()
                     setCarritoVacio()
@@ -167,7 +163,6 @@ window.addEventListener("load", function () {
 
     botones.forEach((boton, i) => {
         botones[0].addEventListener("click", () => {
-            formaDeEnvio = true
             datosEntrega = {
                 nombre: inputs[0].value,
                 direccion: inputs[1].value,
@@ -176,7 +171,6 @@ window.addEventListener("load", function () {
 
         })
         botones[1].addEventListener("click", () => {
-            formaDeEnvio = true
             datosEntrega = {
                 nombre: inputs[3].value,
                 hora: inputs[4].value
@@ -242,34 +236,44 @@ window.addEventListener("load", function () {
 
     //funciones para terminar la compra
     let realizarPedido = document.querySelector(".boton-terminar-compra")
-    let errorNumber = 0
     realizarPedido.addEventListener("click", async () => {
         //creamos dos variables, 1 con el carrito y la 2 con los adicionales de cada producto
+        errorPayment.innerText = ""
+
+        let errorNumber = 0;
+        let errorSinPago = 0;
+        let errorSinEnvio = 0
         let carrito = JSON.parse(sessionStorage.carrito)
         let adicionales = JSON.parse(sessionStorage.adicional)
         let totalFinal = document.querySelector(".p-valor").innerText
         if (botones[0].dataset.active == 1) {
 
-            if (datosEntrega.nombre == "") {
+            if (inputs[0].value == "") {
                 inputs[0].style.border = "solid 2px red"
                 errorInputs[0].innerText = "Debes ingresar un nombre"
                 errorNumber = 1;
+                formaDeEnvio = false
             } else {
                 errorNumber = 0;
+                formaDeEnvio = true
             }
-            if (datosEntrega.direccion == "") {
+            if (inputs[1].value == "") {
                 inputs[1].style.border = "solid 2px red"
                 errorInputs[1].innerText = "Debes ingresar una dirección"
                 errorNumber = 1;
+                formaDeEnvio = false
             } else {
                 errorNumber = 0;
+                formaDeEnvio = true
             }
-            if (datosEntrega.hora == "") {
+            if (inputs[2].value == "") {
                 inputs[2].style.border = "solid 2px red"
                 errorInputs[2].innerText = "Debes ingresar una hora"
                 errorNumber = 1;
+                formaDeEnvio = false
             } else {
                 errorNumber = 0;
+                formaDeEnvio = true
             }
         }
         if (botones[1].dataset.active == 1) {
@@ -277,19 +281,23 @@ window.addEventListener("load", function () {
                 nombre: inputs[3].value,
                 hora: inputs[4].value
             }
-            if (datosEntrega.nombre == "") {
+            if (inputs[3].value == "") {
                 inputs[3].style.border = "solid 2px red"
                 errorInputs[3].innerText = "Debes ingresar un nombre"
                 errorNumber = 1;
+                formaDeEnvio = false
             } else {
                 errorNumber = 0;
+                formaDeEnvio = true
             }
-            if (datosEntrega.hora == "") {
+            if (inputs[4].value == "") {
                 inputs[4].style.border = "solid 2px red"
                 errorInputs[4].innerText = "Debes ingresar una hora"
                 errorNumber = 1;
+                formaDeEnvio = false
             } else {
                 errorNumber = 0;
+                formaDeEnvio = true
             }
         }
 
@@ -301,28 +309,29 @@ window.addEventListener("load", function () {
                 datosDePago = `${boton.name}`
             }
         })
-        console.log(datosDePago);
-
+        
         if (formaDePago == false) {
-            errorPayment.innerText = "Debes elegir un metodo de pago";
-            errorNumber = 1;
+            errorPayment.innerText += "Debes elegir un metodo de pago\n";
+            errorSinPago = 1;
         } else {
             tipoPagoPedido = `• Método de Pago: ${datosDePago} \n`;
-            errorNumber = 0;
+            errorSinPago = 0;
         }
         if (formaDeEnvio == false) {
-            errorPayment.innerText = "Debes elegir una forma de entrega";
+            errorPayment.innerText += "Debes elegir una forma de entrega\n";
+            errorSinEnvio = 1;
         } else {
             if (datosEntrega.direccion) {
                 tipoEnvioPedido = `• Método de Entrega: Delivery \n • Recibe: ${datosEntrega.nombre} \n • Dirección: ${datosEntrega.direccion} \n • Hora de Envío: ${datosEntrega.hora} \n`
             } else {
                 tipoEnvioPedido = `• Método de Entrega: Take Away \n • Retira: ${datosEntrega.nombre} \n • Hora de Retiro: ${datosEntrega.hora} \n`
             }
+            errorSinEnvio = 0;
         }
-
-        console.log(carrito);
-        console.log(tipoEnvioPedido);
-        console.log(tipoPagoPedido);
+        console.log(errorNumber);
+        console.log(errorSinEnvio);
+        console.log(errorSinPago);
+        console.log(formaDeEnvio)
         let pedido = ""
         let productosPedido = ""
         if (carrito.length > 0 && adicionales.length > 0) {
@@ -344,19 +353,19 @@ window.addEventListener("load", function () {
                     }
                 }
                 if (producto.detalles != "") {
-                    console.log("si hay detalles");
                     productosPedido += `Detalles:\n ${producto.detalles}\n`
                 }
             })
         }
-        console.log(productosPedido);
-        if (errorNumber == 0) {
+        if (errorNumber == 0 && errorSinEnvio == 0 && errorSinPago == 0) {
             pedido =
                 `Hola, Quiero hacer un pedido, este es el detalle:\n Pedido:\n ${productosPedido}\n*Forma de Entrega*\n ${tipoEnvioPedido}\n*Forma de Pago*\n ${tipoPagoPedido}\n • Total del Pedido: ${totalFinal}`
-            window.location.href = `https://api.whatsapp.com/send/?phone=5493534443386&text=${encodeURIComponent(pedido)}&amp;type=phone_number&amp;app_absent=0` 
+            window.location.href = `https://api.whatsapp.com/send/?phone=5493534443386&text=${encodeURIComponent(pedido)}&amp;type=phone_number&amp;app_absent=0`
+            errorPayment.innerText = ""
+            console.log(pedido);
         } else {
-            errorPayment.innerText = "Debes completar todos los campos";
+            errorPayment.innerText += "Debes completar todos los campos";
         }
-        
+
     })
 })

@@ -4,6 +4,8 @@
 window.addEventListener("load", () => {
     let divApertura = document.querySelector(".abierto");
 
+    
+
     setInterval(() => {
         let tiempo = new Date();
         let hora = tiempo.getHours();
