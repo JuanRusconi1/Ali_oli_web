@@ -10,11 +10,9 @@
                 <% let minutos = tiempo.getMinutes();%>
         
                 <%  if((hora >= 20 && hora < 24) && (minutos > 0 && minutos <= 59)) { %>
-                    <%= console.log("entro en el verde") %>
                     <div class="abierto"><i class="fa-solid fa-clock"></i>Abierto</div>
 
                 <% } else { %>
-                      <%= console.log("entro en el rojo") %>
                     <div class="abierto" style="background-color: tomato"><i class="fa-solid fa-clock"></i>Cerrado</div>
                     
                     <% } %>

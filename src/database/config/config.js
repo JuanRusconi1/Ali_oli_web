@@ -14,10 +14,10 @@ module.exports = {
     "dialect": "mysql"
   },
   "production": {
-    "username": "phericsone_admin",
-    "password": "alioli2030",
-    "database": "phericsone_alioli",
-    "host": "phericsone.com.ar",
+    "username": "root",
+    "password": "Alioli123",
+    "database": "alioli",
+    "host": "127.0.0.1",
     "dialect": "mysql"
   }
 }

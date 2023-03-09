@@ -328,10 +328,6 @@ window.addEventListener("load", function () {
             }
             errorSinEnvio = 0;
         }
-        console.log(errorNumber);
-        console.log(errorSinEnvio);
-        console.log(errorSinPago);
-        console.log(formaDeEnvio)
         let pedido = ""
         let productosPedido = ""
         if (carrito.length > 0 && adicionales.length > 0) {
@@ -357,6 +353,7 @@ window.addEventListener("load", function () {
                 }
             })
         }
+       
         if (errorNumber == 0 && errorSinEnvio == 0 && errorSinPago == 0) {
             pedido =
                 `Hola, Quiero hacer un pedido, este es el detalle:\n Pedido:\n ${productosPedido}\n*Forma de Entrega*\n ${tipoEnvioPedido}\n*Forma de Pago*\n ${tipoPagoPedido}\n • Total del Pedido: ${totalFinal}`
@@ -366,6 +363,5 @@ window.addEventListener("load", function () {
         } else {
             errorPayment.innerText += "Debes completar todos los campos";
         }
-
     })
 })
