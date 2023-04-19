@@ -28,7 +28,6 @@ module.exports = (sequelize, dataTypes) => {
     let config = {
         tableName: 'products',
         timestamps: false,
-        paranoid: true
     }
     const Product = sequelize.define(alias, cols, config)
 

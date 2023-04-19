@@ -2,7 +2,7 @@ module.exports = {
   "development": {
     "username": "root",
     "password": null,
-    "database": "alioli",
+    "database": "aliolidb",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
@@ -15,7 +15,7 @@ module.exports = {
   },
   "production": {
     "username": "root",
-    "password": "Alioli123",
+    "password": null,
     "database": "alioli",
     "host": "127.0.0.1",
     "dialect": "mysql"
