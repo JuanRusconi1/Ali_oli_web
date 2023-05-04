@@ -21,9 +21,6 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.INTEGER,
             allowNull: false
         },
-        deleteAt:{
-            type: dataTypes.INTEGER
-        }
     }
     let config = {
         tableName: 'products',
@@ -36,12 +33,7 @@ module.exports = (sequelize, dataTypes) => {
             as:"categories",
             foreignKey: "categoryId"
         })
-        Product.hasMany(models.OrderItem, {
-            as:"OrderItem",
-            foreignKey: "productId"
-        })
     }
-    
 
     return Product
 

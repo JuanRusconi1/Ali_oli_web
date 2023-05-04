@@ -1,4 +1,3 @@
-const { log } = require("console");
 const DB = require("../../database/models");
 const path = require("path");
 const multer = require("multer")
@@ -16,7 +15,7 @@ var upload = multer({storage: storage})
 
 module.exports = {
     list: (req, res) => {
-        DB.Product.findAll()
+        DB.Product.findAll({ include: [{ association: "categories" }] })
             .then((products) => {
 
                 for (let i = 0; i < products.length; i++) {

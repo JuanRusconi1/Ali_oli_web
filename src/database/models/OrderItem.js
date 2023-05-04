@@ -8,28 +8,37 @@ module.exports = (sequelize, dataTypes) => {
             autoIncrement: true,
             primaryKey: true
         },
+        productName: {
+            type: dataTypes.TEXT,
+            allowNull: false
+        },
+        productCategory: {
+            type: dataTypes.TEXT,
+            allowNull: false
+        },
+        price: {
+            type: dataTypes.INTEGER,
+            allowNull: false
+        },
         quantity:{
             type: dataTypes.INTEGER,
             allowNull: false
         }
     }
     let config = {
-        tableName: "OrderItem",
-        timestamps: false,
+        tableName: "orderitem",
+        timestamps: false
     }
 
     const OrderItem = sequelize.define(alias, cols, config)
 
     OrderItem.associate = (models) => {
-        OrderItem.belongsTo(models.Product, {
-            as:"products", 
-            foreignKey:"productId"
-        })
-        OrderItem.belongsTo(models.Sale,{
+        OrderItem.belongsTo(models.Sale, {
             as:"sales",
-            foreignKey:"orderId"
+            foreignKey:"salesId"
         })
     }
 
     return OrderItem
+    
 }

@@ -13,34 +13,29 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.TEXT,
             allowNull: false
         },
-        direccion: {
-            type: dataTypes.STRING(100)
+        phoneNumber: {
+            type: dataTypes.INTEGER
         },
-        telefono: {
+        total: {
             type: dataTypes.INTEGER
         },
         createdAt: {
             type: dataTypes.DATE,
-            allowNull: false
-        },
-        deleteAt: {
-            type:dataTypes.INTEGER,
             allowNull: false
         }
 
     }
     let config = {
         tableName: "sales",
-        timestamps: false,
-        paranoid: true
+        timestamps: false
     }   
 
     const Sale = sequelize.define(alias, cols, config)
 
-    Sale.association = (models) => {
-        Sale.hasMany(models.OrderItem, {
-            as:"OrderItem",
-            foreignKey: "orderId"
+    Sale.associate = (models) => {
+       Sale.OrderItem = Sale.hasMany(models.OrderItem, {
+            as:"orderitem",
+            foreignKey: "salesId"
         })
     }
     
