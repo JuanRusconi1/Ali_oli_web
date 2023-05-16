@@ -19,8 +19,8 @@ module.exports = (sequelize, dataTypes) => {
         total: {
             type: dataTypes.INTEGER
         },
-        createdAt: {
-            type: dataTypes.DATE,
+        date: {
+            type: dataTypes.TEXT,
             allowNull: false
         }
 
