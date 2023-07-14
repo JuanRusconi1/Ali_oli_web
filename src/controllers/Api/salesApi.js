@@ -3,17 +3,26 @@ const Op = DB.Sequelize.Op;
 module.exports = {
   list: (req, res) => {
     DB.Sale.findAll({ include: DB.Sale.OrderItem })
-      .then(sales => res.json(sales))
+      .then(sales => {
+        const response = {
+          status: 200,
+          ok: true,
+          count: sales.length,
+          data:sales
+        }
+        res.json(response)
+      })
       .catch(error => res.json(error))
   },
   create: async (req, res) => {
     let date = new Date()
     let newDate = () => {
-      let day = `0${date.getDate()}`.slice(-2);
-      let month = `0${date.getMonth() + 1}`.slice(-2);
+      let day = `0${date.getDate()}`.slice(-2)
+      let month = `0${date.getMonth() + 1}`.slice(-2)
       let year = date.getFullYear()
       return `${year}-${month}-${day}`
     }
+    console.log(req.body)
     let order = await DB.Sale.create({ ...req.body, date: newDate() }, {
       include: DB.Sale.OrderItem
     })
@@ -33,7 +42,7 @@ module.exports = {
         res.json(response)
       })
   },
-  delete: (req, res) => {
+  delete: async (req, res) => {
     const { id } = req.params
     DB.Sale.destroy({
       where: { id: id },
@@ -55,7 +64,7 @@ module.exports = {
       const salesPerPage = await DB.Sale.findAll({
         offset: offset,
         limit: limit,
-        order: [["id", "ASC"]]
+        order: [["id", "DESC"]]
       }) 
       const ok = salesPerPage.length > 0 ? true : false
       const response = {

@@ -7,6 +7,7 @@ const mainRouter = require("./src/routes/mainRouter")
 const productRouter = require("./src/routes/productRouter")
 const productsApiRouter = require("./src/routes/Api/productsApi");
 const salesApiRouter = require("./src/routes/Api/salesApi");
+const userApiRouter = require("./src/routes/Api/userApi")
 const cors = require("cors")
 
 //Configuración 
@@ -29,6 +30,7 @@ app.use("/product", productRouter)
 //RUTAS Api 
 app.use("/api/products", productsApiRouter)
 app.use("/api/sales", salesApiRouter)
+app.use("/api/user", userApiRouter)
 
 
 //SERVIDOR 

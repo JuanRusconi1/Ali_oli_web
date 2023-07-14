@@ -20,4 +20,5 @@ router.post("/search", salesApi.search)
 
 // Crear una nueva comanda http://localhost:3500/api/sales/create
 router.post("/create", salesApi.create)
+
 module.exports = router

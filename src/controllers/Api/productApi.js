@@ -1,17 +1,17 @@
 const DB = require("../../database/models");
 const path = require("path");
-const multer = require("multer")
+const multer = require("multer");
 const Op = DB.Sequelize.Op;
 
 const storage = multer.diskStorage({
-    destination: function(req, file, cb){
-      cb(null, "public/images/products")
+    destination: function (req, file, cb) {
+        cb(null, "public/images/products")
     },
-    filename: function(req, file, cb){
+    filename: function (req, file, cb) {
         cb(null, file.fieldname + "-" + Date.now() + path.extname(file.originalname))
-      }
-    })
-var upload = multer({storage: storage})
+    }
+})
+var upload = multer({ storage: storage })
 
 module.exports = {
     list: (req, res) => {
@@ -74,7 +74,7 @@ module.exports = {
     },
     create: (req, res) => {
         let image
-        if(req.file !== undefined){
+        if (req.file !== undefined) {
             image = req.file.filename
         } else {
             image = null
@@ -84,34 +84,72 @@ module.exports = {
             image: image
         }
         DB.Product.create(product)
-        
-        res.json({ok: true, status: 200, newProduct: product})
+
+        res.json({ ok: true, status: 200, newProduct: product })
     },
     update: async (req, res) => {
-        let {id} = req.params
+        let { id } = req.params
         let product = await DB.Product.findByPk(id)
-        
+
         let image
-        (req.file !==undefined)
-        ? image == req.file.filename
-        : image == product.image
+        (req.file !== undefined)
+            ? image == req.file.filename
+            : image == product.image
 
         let newProduct = {
             ...req.body,
             image: image
         }
 
-        DB.Product.update(newProduct, {where: {id}})
+        DB.Product.update(newProduct, { where: { id } })
 
-        res.json({ok: true, status: 200, newProduct: newProduct})
+        res.json({ ok: true, status: 200, newProduct: newProduct })
     },
-    delete: async (req, res) => {
-         let {id} = req.params 
-         await DB.Product.destroy({
-             where: { id : id },
-             force: true
-         })
+    delete: (req, res) => {
+        let { id } = req.params
+        DB.Product.destroy({
+            where: { id: id },
+            force: true
+        })
+        .then(response =>  {
+            res.json({ ok: false, status: 200 })
+        }).catch(error => res.json(error))
+
+    },
+    listStock: (req, res) => {
+
+        DB.Stock.findAll()
+        .then(items =>  {
+            let response = {
+                status: 200,
+                ok: true,
+                data: items
+            }
+            res.json(response)
+        }).catch((error) => res.json(error))
         
-        return res.json({ok: true, status: 200})
+    },
+    createRowStock: (req, res) => {
+        DB.Stock.create(req.body)
+        .then(response => {
+            res.json({ ok:true, status:200, newRow: response})
+        }).catch(error => res.json(error))
+    },
+    deleteStock: (req, res) => {
+        let { id } = req.params
+        DB.Stock.destroy({
+            where: {id: id},
+            force: true
+        })
+        .then(response =>  {
+            res.json({ ok: true, status: 200 })
+        }).catch(error => res.json(error))
+    },
+    updateStock: (req, res) => {
+        let { id } = req.params
+        DB.Stock.update(req.body, {
+            where: { id }
+        }).then(response => res.json({ ok: true, status: 200, newRow: response}))
+            .catch(error => res.json(error))
     }
 }

@@ -14,7 +14,7 @@ module.exports = (sequelize, dataTypes) => {
             allowNull: false
         },
         phoneNumber: {
-            type: dataTypes.INTEGER
+            type: dataTypes.TEXT
         },
         total: {
             type: dataTypes.INTEGER

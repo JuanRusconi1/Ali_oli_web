@@ -35,8 +35,19 @@ router.get("/categories", productApi.listCategories)
 // Eliminar un producto http://localhost:3500/api/products/delete/:id
 router.get("/delete/:id", productApi.delete)
 
+// Obtener la tabla de stock http://localhost:3500/api/products/stock
+router.get("/stock", productApi.listStock)
+
+// Eliminar una fila de la tabla de stock http://localhost:3500/api/products/stock/delete/:id
+router.get("/stock/delete/:id", productApi.deleteStock)
+
+// Añadir una fila a la tabla de stock http://localhost:3500/api/products/stock/create
+router.post("/stock/create", productApi.createRowStock)
+
+// modificar una fila de la tabla de stock http://localhost:3500/api/products/stock/update/:id
+router.post("/stock/update/:id", productApi.updateStock)
+
 // Detalle del producto http://localhost:3500/api/products/:id
 router.get("/:id", productApi.detail)
-
 
 module.exports = router

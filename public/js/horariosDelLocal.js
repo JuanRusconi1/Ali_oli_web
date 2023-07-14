@@ -20,5 +20,5 @@ window.addEventListener("load", () => {
             divApertura.innerHTML = `<i class="fa-solid fa-clock"></i> Cerrado`
        }
        
-    }, 60000)
+    }, 1000)
 })
