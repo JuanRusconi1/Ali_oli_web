@@ -1,6 +1,7 @@
 const DB = require("../../database/models");
 const path = require("path");
 const multer = require("multer");
+const fs = require("fs")
 const Op = DB.Sequelize.Op;
 
 const storage = multer.diskStorage({
@@ -90,31 +91,49 @@ module.exports = {
     update: async (req, res) => {
         let { id } = req.params
         let product = await DB.Product.findByPk(id)
-
         let image
-        (req.file !== undefined)
-            ? image == req.file.filename
-            : image == product.image
-
+        if (req.file) {
+            image = req.file.filename
+            let pathImage = `public/images/products/${product.image}`
+            if (fs.existsSync(pathImage)) {
+                fs.unlink(pathImage, (error) => {
+                    if (error) {
+                        console.log(error)
+                    }
+                    console.log("imagen eliminada")
+                })
+            }
+        } else {
+            image == product.image
+        }     
         let newProduct = {
             ...req.body,
             image: image
         }
 
         DB.Product.update(newProduct, { where: { id } })
-
+        console.log(newProduct)
         res.json({ ok: true, status: 200, newProduct: newProduct })
     },
-    delete: (req, res) => {
+    delete: async (req, res) => {
         let { id } = req.params
-        DB.Product.destroy({
+        let product = await DB.Product.findByPk(id)
+        let destroy = await DB.Product.destroy({
             where: { id: id },
             force: true
         })
-        .then(response =>  {
+        if (destroy) {
+            let pathImage = `public/images/products/${product.image}`
+            if (fs.existsSync(pathImage)) {
+                fs.unlink(pathImage, (error) => {
+                    if (error) {
+                        console.log(error)
+                    }
+                    console.log("imagen eliminada")
+                })
+            }
             res.json({ ok: false, status: 200 })
-        }).catch(error => res.json(error))
-
+        }
     },
     listStock: (req, res) => {
 
