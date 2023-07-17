@@ -48,7 +48,8 @@ main {
 }
 .error-input,
 .error-payment {
-  color: red;
+  color: tomato;
+  font-weight: bold;
 }
 .div-item-lista {
   display: flex;
@@ -249,6 +250,7 @@ main {
   }
   .div-tipo-entrega {
     font-size: 1.3em;
+    cursor: pointer;
   }
   .nombre-imput,
   .input-form,

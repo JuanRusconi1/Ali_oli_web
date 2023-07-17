@@ -4,13 +4,20 @@ window.addEventListener("load", function () {
     let tituloSeccion = document.querySelectorAll(".titulo")
     let productos = document.querySelectorAll(".columna-div-principal")
     
-    for (let i = 0; i < tituloSeccion.length; i++) {
-        tituloSeccion[i].addEventListener("click", () => {
-            productos[i].classList.toggle("flex");
+    tituloSeccion.forEach((titulo, i)=> {
+        titulo.addEventListener('click', () => { 
+            if (productos[i].classList[1] !== 'flex') {
+                productos.forEach((producto, i) => {
+                    productos[i].classList.remove("flex")
+                })
+                productos[i].classList.add("flex");
+            } else {
+                productos[i].classList.remove("flex");
+            }
+
         })
-
-    } 
-
+        
+    })
 
     function calcularProductos(carrito) {
         return carrito.reduce((acum, item) => acum += item.cantidad, 0);

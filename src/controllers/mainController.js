@@ -1,19 +1,13 @@
 const DB = require("../database/models")
 
 const mainController = {
-    index:  (req, res) => {
-        
-            DB.Product.findAll({
+    index: async (req, res) => { 
+           const products = await DB.Product.findAll({
                 include: [{ association: "categories" }]
                 })
-            .then(productos => {
-                res.render("home", {productos})
-            } )
-            
-            
-
-
-
+            const categories = await DB.Category.findAll()
+                res.render("home", {productos: products, categorias: categories})
+           
     }
 }
 
