@@ -112,7 +112,6 @@ module.exports = {
         }
 
         DB.Product.update(newProduct, { where: { id } })
-        console.log(newProduct)
         res.json({ ok: true, status: 200, newProduct: newProduct })
     },
     delete: async (req, res) => {

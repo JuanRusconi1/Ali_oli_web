@@ -22,7 +22,6 @@ module.exports = {
       let year = date.getFullYear()
       return `${year}-${month}-${day}`
     }
-    console.log(req.body)
     let order = await DB.Sale.create({ ...req.body, date: newDate() }, {
       include: DB.Sale.OrderItem
     })
