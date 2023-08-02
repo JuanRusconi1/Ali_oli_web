@@ -100,7 +100,6 @@ module.exports = {
                     if (error) {
                         console.log(error)
                     }
-                    console.log("imagen eliminada")
                 })
             }
         } else {
@@ -128,7 +127,6 @@ module.exports = {
                     if (error) {
                         console.log(error)
                     }
-                    console.log("imagen eliminada")
                 })
             }
             res.json({ ok: false, status: 200 })

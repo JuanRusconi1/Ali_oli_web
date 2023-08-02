@@ -17,29 +17,35 @@ module.exports = {
   create: async (req, res) => {
     let date = new Date()
     let newDate = () => {
-      let day = `0${date.getDate()}`.slice(-2)
-      let month = `0${date.getMonth() + 1}`.slice(-2)
-      let year = date.getFullYear()
-      return `${year}-${month}-${day}`
+      let day = `0${date.getDate()}`.slice(-2);
+      let month = `0${date.getMonth() + 1}`.slice(-2);
+      let year = date.getFullYear();
+      let hours = `0${date.getHours()}`.slice(-2);
+      let minutes = `0${date.getMinutes()}`.slice(-2);
+      return `${year}-${month}-${day} ${hours}:${minutes}`
     }
-    let order = await DB.Sale.create({ ...req.body, date: newDate() }, {
-      include: DB.Sale.OrderItem
+    const { orderitem } = req.body
+    let order = await DB.Sale.create({ ...req.body, date: newDate() })
+    orderitem.forEach(item => {
+      DB.OrderItem.create({ salesId: order.id, ...item }, {
+        include: DB.OrderItem.Docena
+      })
     })
     res.json({ ok: true, status: 200, order: order })
 
   },
-  detail: (req, res) => {
+  detail: async (req, res) => {
     const { id } = req.params
-    DB.Sale.findByPk(id, {
-      include: DB.Sale.OrderItem
+    let order = await DB.Sale.findByPk(id)
+    let orderitem = await DB.OrderItem.findAll({
+      where: {salesId : id},
+      include: DB.OrderItem.Docena
     })
-      .then(saleDetail => {
-        let response = {
-          status: 200,
-          data: saleDetail
-        }
-        res.json(response)
-      })
+    if (order && orderitem) {
+      order.setDataValue("orderitem", orderitem)
+     return res.json({ok:true, status: 200, data: order})
+    } 
+    res.json({ok: false, status: 502})
   },
   delete: async (req, res) => {
     const { id } = req.params
@@ -50,7 +56,7 @@ module.exports = {
     DB.OrderItem.destroy({
       where: { salesId: id },
       force: true
-    })
+    },{include: DB.OrderItem.Docena})
     return res.json({ ok: true, status: 200 })
   },
   pagination: async (req, res) => {
@@ -64,7 +70,7 @@ module.exports = {
         offset: offset,
         limit: limit,
         order: [["id", "DESC"]]
-      }) 
+      })
       const ok = salesPerPage.length > 0 ? true : false
       const response = {
         ok: ok,
@@ -99,5 +105,23 @@ module.exports = {
           res.json({ok: false, status: 500})
         }
       })
+  },
+  update: async (req, res) => {
+    const { id } = req.params
+    const { orderitem, buyerName, phoneNumber, paymentType, total } = req.body
+    DB.OrderItem.destroy({
+      where: { salesId: id },
+      force: true
+    })
+    const sale = {buyerName: buyerName,phoneNumber: phoneNumber, paymentType: paymentType, total: total}
+    DB.Sale.update(sale, {where: {id: id}})
+    orderitem.forEach(item => {
+      delete item.id
+      DB.OrderItem.create({ salesId: id, ...item }, {
+        include: DB.OrderItem.Docena
+      })
+    })
+    let order = {id: id}
+    res.json({ ok: true, status: 200, order: order})
   }
 }

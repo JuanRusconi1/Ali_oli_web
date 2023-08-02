@@ -15,6 +15,8 @@ router.get("/delete/:id", salesApi.delete)
 // obtener comandas divido en paginas http://localhost:3500/api/sales/page/:id
 router.get("/page/:id", salesApi.pagination)
 
+router.post("/update/:id", salesApi.update)
+
 // buscar comandas por fecha http://localhost:3500/api/sales/search
 router.post("/search", salesApi.search)
 
