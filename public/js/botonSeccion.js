@@ -3,7 +3,9 @@ window.addEventListener("load", function () {
 
     let tituloSeccion = document.querySelectorAll(".titulo")
     let productos = document.querySelectorAll(".columna-div-principal")
-    
+    let productosTitulo = document.querySelectorAll(".titulo-nombre-p")
+    let productosPrice = document.querySelectorAll(".titulo-precio-p")
+
     tituloSeccion.forEach((titulo, i)=> {
         titulo.addEventListener('click', () => { 
             if (productos[i].classList[1] !== 'flex') {
@@ -19,23 +21,10 @@ window.addEventListener("load", function () {
         
     })
 
-    function calcularProductos(carrito) {
-        return carrito.reduce((acum, item) => acum += item.cantidad, 0);
-    }
-
-    if(sessionStorage ){
-    let contador = document.querySelector(".contador")
-    let carrito = JSON.parse(sessionStorage.carrito)
-    console.log(carrito);
-    if (carrito) {
-        contador.innerText = calcularProductos(carrito)
-        
-    }}
-    
     let preciosPizza = document.querySelectorAll(".media-price");
     let medias = []
     fetch("/api/products")
-    .then(res => res.json())
+    .then(products => products.json())
     .then(products => {
         products.data.forEach(item => {
             if(item.categoryId == 8) {
@@ -43,10 +32,15 @@ window.addEventListener("load", function () {
             }
         });
         for (let i = 0; i < medias.length; i++) {
-            preciosPizza[i].innerText = `${preciosPizza[i].innerText} / ${medias[i].price}`    
+            preciosPizza[i].innerText = `${preciosPizza[i].innerText} / $${medias[i].price}`    
         }
-    })
-      
+        let EmpanadasChampi = products.data.filter((product) => product.categoryId === 6 && product.name.toLowerCase().includes("champiñones"))
+        for (let i = 0; i < productosTitulo.length; i++) {
+             if (productosTitulo[i].innerText.toLowerCase() === "empanada de champiñones") {
+                productosPrice[i].innerText = `C/U: $${EmpanadasChampi[0].price} / Media: $${EmpanadasChampi[2].price} / Docena: $${EmpanadasChampi[1].price}`
+            }
+        }
+    }) 
     
 })
 

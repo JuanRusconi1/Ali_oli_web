@@ -52,6 +52,7 @@
 
 /* estilos cantidad, solo para las vistas de "Docena de Empandas"*/
 .div-contenedor-maxima {
+  display: flex;
   background-color: var(--amber);
   font-size: 1.2em;
   font-weight: bold;

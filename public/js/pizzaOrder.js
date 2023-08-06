@@ -14,7 +14,7 @@ window.addEventListener("load", function () {
                 if (pizza.name.toLowerCase().includes(`media ${titulo.toLocaleLowerCase()}`) && pizza.categoryId == 8) {
                     checkbox[0].name = pizza.name;
                     checkbox[0].dataset.price = pizza.price
-                    checkbox[0].dataset.id = pizza.id
+                    checkbox[0].dataset.name = pizza.name
                 }
             });
         })
@@ -27,7 +27,7 @@ window.addEventListener("load", function () {
             })
             info = { name: checkbox[i].name, price: checkbox[i].dataset.price }
             checkbox[i].checked = true
-            añadir.dataset.id = checkbox[i].dataset.id
+            añadir.dataset.name = checkbox[i].dataset.name
         })
 
     })
@@ -36,12 +36,10 @@ window.addEventListener("load", function () {
     let cantidad = document.querySelector(".numero-cantidad");
     let detalles = document.querySelector(".textarea-detalles")
     añadir.addEventListener("click", (e) => {
-
         let value = parseFloat(cantidad.innerText)
-        if (sessionStorage.carrito) {
+        if (sessionStorage && sessionStorage.carrito) {
             let carrito = JSON.parse(sessionStorage.carrito);
-            let storageAdicional = JSON.parse(sessionStorage.adicional);
-            let index = carrito.findIndex(producto => producto.id == e.target.dataset.id);
+            let index = carrito.findIndex(producto => producto.name == añadir.dataset.name);
             if (index != -1) {
                 carrito[index].cantidad = carrito[index].cantidad + value;
                 if (carrito[index].detalles == "") {
@@ -50,27 +48,13 @@ window.addEventListener("load", function () {
                     carrito[index].detalles = carrito[index].detalles
                 }
             } else {
-                carrito.push({ id: e.target.dataset.id, ...info, cantidad: value, detalles: detalles.value })
-                storageAdicional.push({id: e.target.dataset.id})
+                carrito.push({ id: carrito.length + 1, ...info, cantidad: value, detalles: detalles.value })
             }
             sessionStorage.setItem("carrito", JSON.stringify(carrito))
-            sessionStorage.setItem("adicional", JSON.stringify(storageAdicional))
         } else {
 
-            sessionStorage.setItem("carrito", JSON.stringify([{ id: e.target.dataset.id, ...info, cantidad: value, detalles: detalles.value }]))
-            sessionStorage.setItem("adicional", JSON.stringify([{id: e.target.dataset.id}]))
+            sessionStorage.setItem("carrito", JSON.stringify([{ id: 1, ...info, cantidad: value, detalles: detalles.value }]))
 
         }
     })
-
-    function calcularProductos(carrito) {
-        return carrito.reduce((acum, item) => acum += item.cantidad, 0);
-    }
-
-    let contador = document.querySelector(".contador")
-    let carrito = JSON.parse(sessionStorage.carrito)
-
-    if (carrito) {
-        contador.innerText = calcularProductos(carrito)
-    }
 })

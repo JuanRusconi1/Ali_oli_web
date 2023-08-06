@@ -13,7 +13,7 @@
           <div class="imagen-div">
             <img
               class="imagen-img"
-              src="/images/products/<%=producto.image%> "
+              src="/images/products/<%=producto.image%>"
               alt="imagen"
             />
           </div>
@@ -199,9 +199,8 @@
       </div>       
       <div class="div-titulo titulo"><p class="p-titulo">Empanadas</p></div>
       <div class="columna-div-principal">
-        <% productos.forEach(producto => {  if (producto.categoryId == 6) {
-        %>
-
+        <% productos.forEach(producto => {  if (producto.categoryId == 6) { %>
+        <% if (producto.name.slice(0, 8).toLowerCase() == "empanada") { %>  
         <div class="lista-div-principal">
           <div class="imagen-div">
             <img
@@ -219,13 +218,30 @@
             <a class="boton-a" href="/product/buy/<%=producto.id%> "><i class="fa-solid fa-plus" data-id="<%=producto.id%>"></i>pedir</a>
           </div>
         </div>
-        <% }  }) %>
+        <% } %>
+        <% if (producto.name.toLowerCase() == "docena de empanadas" || producto.name.toLowerCase() == "media docena de empanadas") { %>  
+          <div class="lista-div-principal">
+          <div class="imagen-div">
+            <img
+              class="imagen-img"
+              src="/images/products/<%=producto.image%> "
+              alt="imagen"
+            />
+          </div>
+          <div class="titulos-div">
+            <p class="titulo-nombre-p"><%=producto.name%></p>
+            <p class="titulo-descripcion-p"><%=producto.description%></p>
+            <p class="titulo-precio-p">$<%=producto.price%></p>
+          </div>
+          <div class="boton-div">
+            <a class="boton-a" href="/product/buy/<%=producto.id%> "><i class="fa-solid fa-plus" data-id="<%=producto.id%>"></i>pedir</a>
+          </div>
+        </div>
+        <% }}}) %>
       </div>
       <div class="div-titulo titulo"><p class="p-titulo">Entradas</p></div>
       <div class="columna-div-principal">
-        <% productos.forEach(producto => {  if (producto.categoryId == 7) {
-        %>
-
+        <% productos.forEach(producto => {  if (producto.categoryId == 7) { %>
         <div class="lista-div-principal">
           <div class="imagen-div">
             <img
@@ -257,5 +273,6 @@
     <%- include("partials/footer") %>
 
     <script src="/js/botonSeccion.js"></script>
+    <script src="/js/calcularCarrito.js"></script>
   </body>
 </html>
