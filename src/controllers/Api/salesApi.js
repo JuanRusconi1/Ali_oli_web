@@ -25,6 +25,7 @@ module.exports = {
       return `${year}-${month}-${day} ${hours}:${minutes}`
     }
     const { orderitem } = req.body
+    console.log({body: req.body, orderitem: orderitem[0].docena})
     let order = await DB.Sale.create({ ...req.body, date: newDate() })
     orderitem.forEach(item => {
       DB.OrderItem.create({ salesId: order.id, ...item }, {
@@ -48,16 +49,21 @@ module.exports = {
     res.json({ok: false, status: 502})
   },
   delete: async (req, res) => {
-    const { id } = req.params
-    DB.Sale.destroy({
-      where: { id: id },
-      force: true
-    })
-    DB.OrderItem.destroy({
-      where: { salesId: id },
-      force: true
-    },{include: DB.OrderItem.Docena})
-    return res.json({ ok: true, status: 200 })
+    if (req.body.secret === "admin") {
+      console.log("eliminar")
+      let { id } = req.body
+      DB.Sale.destroy({
+        where: { id: id },
+        force: true
+      })
+      DB.OrderItem.destroy({
+        where: { salesId: id },
+        force: true
+      },{include: DB.OrderItem.Docena})
+      res.json({ ok: true, status: 200 })
+    } else {
+      res.json({ ok: false, status: 401, error: "Unauthorized" })
+    }
   },
   pagination: async (req, res) => {
     try {

@@ -66,6 +66,7 @@ window.addEventListener("load", function () {
           name: nombre,
           price: e.target.dataset.price,
           cantidad: 1,
+          category: e.target.dataset.category,
           variedades: variedadEmpanadas,
         });
         sessionStorage.setItem("carrito", JSON.stringify(carrito));
@@ -86,6 +87,7 @@ window.addEventListener("load", function () {
               name: nombre,
               price: e.target.dataset.price,
               cantidad: 1,
+              category: e.target.dataset.category,
               variedades: variedadEmpanadas,
             },
           ])

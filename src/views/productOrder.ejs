@@ -111,9 +111,9 @@
           </div>
         <div class="contenedor-boton-continuar">
           <% if (product.name.toLowerCase().includes("pizza")) { %>
-            <a class="boton-continuar-pizza" href="/" data-price="<%=product.price%>" data-name="<%=product.name%>">Continuar</a>
+            <a class="boton-continuar-pizza" href="/" data-price="<%=product.price%>" data-name="<%=product.name%>" data-category="<%=product.categories.name%>">Continuar</a>
             <% } else { %>
-              <a class="boton-continuar" href="/"  data-id="<%=product.id%>" data-price="<%=product.price%>">Continuar</a>
+              <a class="boton-continuar" href="/"  data-id="<%=product.id%>" data-price="<%=product.price%>" data-category="<%=product.categories.name%>">Continuar</a>
               <% } %>
         </div>
       </div> 

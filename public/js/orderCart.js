@@ -318,13 +318,48 @@ window.addEventListener("load", function () {
         }
       });
     }
-
+    function nuevoPedido (carrito) {
+      const orderitem = []
+      carrito.map((item, i) => {
+        let docena = []
+        if (item.variedades && item.variedades.length > 0) {
+          item.variedades.map((empanada) => {
+            docena.push({name: empanada.name, quantity: empanada.cantidad})
+          })
+        }
+        orderitem.push({
+          productName: item.name,
+          productCategory: item.category,
+          price: item.price,
+          quantity: item.cantidad,
+          docena: docena
+        })
+      })
+      const order = {
+        buyerName: datosEntrega.nombre,
+        paymentType: datosDePago,
+        total: totalFinal.slice(1),
+        orderitem: orderitem
+      }
+      return order
+    }
     if (errorNumber == 0 && errorSinEnvio == 0 && errorSinPago == 0) {
-      pedido = `Hola, Quiero hacer un pedido, este es el detalle:\n Pedido:\n ${productosPedido}\n*Forma de Entrega*\n ${tipoEnvioPedido}\n*Forma de Pago*\n ${tipoPagoPedido}\n • Total del Pedido: ${totalFinal}`;
-      window.location.href = `https://api.whatsapp.com/send/?phone=5493534443386&text=${encodeURIComponent(
-        pedido
-      )}&amp;type=phone_number&amp;app_absent=0`;
-      errorPayment.innerText = "";
+      fetch("/api/sales/create", {
+        method: 'POST',
+        body: JSON.stringify(nuevoPedido(carrito)),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(response => response.json())
+        .then(orderResponse => {
+          if(orderResponse.ok) {
+            pedido = `Hola, Quiero hacer un pedido, este es el detalle:\n Pedido N°${orderResponse.order.id}\n ${productosPedido}\n*Forma de Entrega*\n ${tipoEnvioPedido}\n*Forma de Pago*\n ${tipoPagoPedido}\n • Total del Pedido: ${totalFinal}`;
+            window.location.href = `https://api.whatsapp.com/send/?phone=5493534443386&text=${encodeURIComponent(
+              pedido
+            )}&amp;type=phone_number&amp;app_absent=0`;
+            errorPayment.innerText = "";
+          }
+        })
     } else {
       errorPayment.innerText += "Debes completar todos los campos";
     }

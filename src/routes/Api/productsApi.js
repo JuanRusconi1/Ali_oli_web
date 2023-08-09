@@ -33,7 +33,7 @@ router.post("/update/:id", upload.single("image"), productApi.update)
 router.get("/categories", productApi.listCategories)
 
 // Eliminar un producto http://localhost:3500/api/products/delete/:id
-router.get("/delete/:id", productApi.delete)
+router.post("/delete", productApi.delete)
 
 // Obtener la tabla de stock http://localhost:3500/api/products/stock
 router.get("/stock", productApi.listStock)

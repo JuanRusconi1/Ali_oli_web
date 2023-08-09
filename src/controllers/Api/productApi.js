@@ -114,23 +114,26 @@ module.exports = {
         res.json({ ok: true, status: 200, newProduct: newProduct })
     },
     delete: async (req, res) => {
-        let { id } = req.params
-        let product = await DB.Product.findByPk(id)
-        let destroy = await DB.Product.destroy({
-            where: { id: id },
-            force: true
-        })
-        if (destroy) {
-            let pathImage = `public/images/products/${product.image}`
-            if (fs.existsSync(pathImage)) {
-                fs.unlink(pathImage, (error) => {
-                    if (error) {
-                        console.log(error)
-                    }
-                })
+        if (req.body.secret === "admin") {
+            let { id } = req.body
+            let product = await DB.Product.findByPk(id)
+            let destroy = await DB.Product.destroy({
+                where: { id: id },
+                force: true
+            })
+            if (destroy) {
+                let pathImage = `public/images/products/${product.image}`
+                if (fs.existsSync(pathImage)) {
+                    fs.unlink(pathImage, (error) => {
+                        if (error) {
+                            console.log(error)
+                        }
+                    })
+                }
+                return res.json({ ok: false, status: 200 })
             }
-            res.json({ ok: false, status: 200 })
         }
+        return res.json({ ok: false, status: 401, error: "Unauthorized" })
     },
     listStock: (req, res) => {
 

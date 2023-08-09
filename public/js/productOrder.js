@@ -85,6 +85,7 @@ window.addEventListener("load", function () {
            price: e.target.dataset.price,
            cantidad: cantidad,
            detalles: detalles.value,
+           category: e.target.dataset.category,
            salsas: adicionales,
          });
        }
@@ -106,6 +107,7 @@ window.addEventListener("load", function () {
              price: e.target.dataset.price,
              cantidad: cantidad,
              detalles: detalles.value,
+             category: e.target.dataset.category,
              salsas: adicionales,
            },
          ])

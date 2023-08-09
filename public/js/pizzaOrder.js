@@ -48,12 +48,12 @@ window.addEventListener("load", function () {
                     carrito[index].detalles = carrito[index].detalles
                 }
             } else {
-                carrito.push({ id: carrito.length + 1, ...info, cantidad: value, detalles: detalles.value })
+                carrito.push({ id: carrito.length + 1, ...info, cantidad: value, category: e.target.dataset.category, detalles: detalles.value })
             }
             sessionStorage.setItem("carrito", JSON.stringify(carrito))
         } else {
 
-            sessionStorage.setItem("carrito", JSON.stringify([{ id: 1, ...info, cantidad: value, detalles: detalles.value }]))
+            sessionStorage.setItem("carrito", JSON.stringify([{ id: 1, ...info, cantidad: value, category: e.target.dataset.category, detalles: detalles.value }]))
 
         }
     })
