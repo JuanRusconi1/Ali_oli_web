@@ -92,22 +92,22 @@
           <i class="fa-solid fa-chevron-down arrow"></i>
         </div>
         <div class="contenedor-adicional-columna">
-          <% salsas.forEach(salsa => { %>
+        <% productos.forEach(product => { if (product.categoryId === 12) { %>
           <div class="contenedor-adicional-tipo">
             <div class="contenedor-checkbox">
               <label class="container">
                 <input
                   type="checkbox"
-                  name="<%=salsa.name%>"
-                  data-price="<%=salsa.price%>"
+                  name="<%=product.name%>"
+                  data-price="<%=product.price%>"
                 />
                 <div class="checkmark"></div>
               </label>
-              <p class="adicional-titulo"><%=salsa.name%></p>
+              <p class="adicional-titulo"><%=product.name%></p>
             </div>
-            <p class="adicional-precio">$<%=salsa.price%></p>
-          </div>
-          <% })} %>
+            <p class="adicional-precio">$<%=product.price%></p>
+          </div> 
+          <% }})}%>
           </div>
         <div class="contenedor-boton-continuar">
           <% if (product.name.toLowerCase().includes("pizza")) { %>

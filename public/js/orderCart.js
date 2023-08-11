@@ -334,6 +334,16 @@ window.addEventListener("load", function () {
           quantity: item.cantidad,
           docena: docena
         })
+        if(item.salsas && item.salsas.length > 0) {
+          item.salsas.map((salsa) => {
+            orderitem.push({
+              productName: salsa.name,
+              productCategory: "Salsas",
+              price: salsa.price,
+              quantity: 1,
+            })
+          })
+        }
       })
       const order = {
         buyerName: datosEntrega.nombre,
