@@ -10,6 +10,13 @@ const salesApiRouter = require("./src/routes/Api/salesApi");
 const userApiRouter = require("./src/routes/Api/userApi")
 const cors = require("cors")
 
+// configuracion cors
+const corsOptionsApi = {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST","DELETE"],
+    optionsSuccesStatus: 200
+}
+
 //Configuración 
 app.use(express.json());
 app.set("view engine", "ejs");
@@ -19,9 +26,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(methodOverride("_mehod"));
 //seteamos nuestro template engine "ejs"
 app.set("views", path.resolve(__dirname,"./src/views"));
-app.use(cors({
-    origin:"*"
-}))
+app.use(cors(corsOptionsApi))
 
 //RUTAS
 app.use("/", mainRouter);

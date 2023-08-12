@@ -130,7 +130,7 @@ module.exports = {
                         }
                     })
                 }
-                return res.json({ ok: false, status: 200 })
+                return res.json({ ok: true, status: 200 })
             }
         }
         return res.json({ ok: false, status: 401, error: "Unauthorized" })
