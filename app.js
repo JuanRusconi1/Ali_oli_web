@@ -12,7 +12,7 @@ const cors = require("cors")
 
 // configuracion cors
 const corsOptionsApi = {
-    origin: "http://localhost:3000",
+    origin: "*",
     methods: ["GET", "POST","DELETE"],
     optionsSuccesStatus: 200
 }

@@ -131,21 +131,26 @@ window.addEventListener("load", function () {
   let inputs = document.querySelectorAll(".delivery");
   let errorInputs = document.querySelectorAll(".error-input");
   let errorPayment = document.querySelector(".error-payment");
-
   botones.forEach((boton, i) => {
     botones[0].addEventListener("click", () => {
       datosEntrega = {
         nombre: inputs[0].value,
         direccion: inputs[1].value,
         hora: inputs[2].value,
+        telefono: inputs[3].value
       };
+      console.log(datosEntrega)
     });
+    console.log(inputs[4]);
     botones[1].addEventListener("click", () => {
       datosEntrega = {
-        nombre: inputs[3].value,
-        hora: inputs[4].value,
+        nombre: inputs[4].value,
+        hora: inputs[5].value,
+        telefono: inputs[6].value
       };
+      console.log(datosEntrega)
     });
+    
   });
 
   inputs[0].addEventListener("blur", () => {
@@ -184,26 +189,46 @@ window.addEventListener("load", function () {
   inputs[3].addEventListener("blur", () => {
     if (inputs[3].value == "") {
       inputs[3].style.border = "solid 2px red";
-      errorInputs[3].innerText = "Debes ingresar un nombre";
+      errorInputs[3].innerText = "Debes ingresar un telefono";
     } else {
       inputs[3].style.border = "solid 2px #fac82f";
       errorInputs[3].innerText = "";
-      datosEntrega.nombre = inputs[3].value;
+      datosEntrega.telefono = inputs[3].value;
     }
   });
 
   inputs[4].addEventListener("blur", () => {
     if (inputs[4].value == "") {
       inputs[4].style.border = "solid 2px red";
-      errorInputs[4].innerText = "Debes ingresar una hora";
+      errorInputs[4].innerText = "Debes ingresar un nombre";
     } else {
       inputs[4].style.border = "solid 2px #fac82f";
       errorInputs[4].innerText = "";
       datosEntrega.hora = inputs[4].value;
     }
   });
+  inputs[5].addEventListener("blur", () => {
+    if (inputs[5].value == "") {
+      inputs[5].style.border = "solid 2px red";
+      errorInputs[5].innerText = "Debes ingresar una hora";
+    } else {
+      inputs[5].style.border = "solid 2px #fac82f";
+      errorInputs[5].innerText = "";
+      datosEntrega.hora = inputs[5].value;
+    }
+  });
+  inputs[6].addEventListener("blur", () => {
+    if (inputs[6].value == "") {
+      inputs[6].style.border = "solid 2px red";
+      errorInputs[6].innerText = "Debes ingresar un telofono";
+    } else {
+      inputs[6].style.border = "solid 2px #fac82f";
+      errorInputs[6].innerText = "";
+      datosEntrega.telefono = inputs[6].value;
+    }
+  });
 
-  //funcion para terminar la compra
+ // funcion para terminar la compra
   let realizarPedido = document.querySelector(".boton-terminar-compra");
   realizarPedido.addEventListener("click", async () => {
     errorPayment.innerText = "";
@@ -332,7 +357,8 @@ window.addEventListener("load", function () {
           productCategory: item.category,
           price: item.price,
           quantity: item.cantidad,
-          docena: docena
+          docena: docena,
+          detail: item.detalles
         })
         if(item.salsas && item.salsas.length > 0) {
           item.salsas.map((salsa) => {
@@ -345,14 +371,17 @@ window.addEventListener("load", function () {
           })
         }
       })
+      console.log(datosEntrega);
       const order = {
         buyerName: datosEntrega.nombre,
+        phoneNumber: datosEntrega.telefono,
         paymentType: datosDePago,
         total: totalFinal.slice(1),
         orderitem: orderitem
       }
       return order
     }
+    console.log(nuevoPedido(carrito))
     if (errorNumber == 0 && errorSinEnvio == 0 && errorSinPago == 0) {
       fetch("/api/sales/create", {
         method: 'POST',
