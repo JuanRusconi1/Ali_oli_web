@@ -204,7 +204,7 @@ window.addEventListener("load", function () {
     } else {
       inputs[4].style.border = "solid 2px #fac82f";
       errorInputs[4].innerText = "";
-      datosEntrega.hora = inputs[4].value;
+      datosEntrega.nombre = inputs[4].value;
     }
   });
   inputs[5].addEventListener("blur", () => {
@@ -269,8 +269,9 @@ window.addEventListener("load", function () {
     }
     if (botones[1].dataset.active == 1) {
       datosEntrega = {
-        nombre: inputs[3].value,
-        hora: inputs[4].value,
+        nombre: inputs[4].value,
+        hora: inputs[5].value,
+        telefono: inputs[6].value
       };
       if (inputs[3].value == "") {
         inputs[3].style.border = "solid 2px red";
@@ -319,6 +320,7 @@ window.addEventListener("load", function () {
       }
       errorSinEnvio = 0;
     }
+    console.log(tipoEnvioPedido)
     let pedido = "";
     let productosPedido = "";
     if (carrito.length > 0) {
@@ -358,7 +360,7 @@ window.addEventListener("load", function () {
           price: item.price,
           quantity: item.cantidad,
           docena: docena,
-          detail: item.detalles
+          details: item.detalles
         })
         if(item.salsas && item.salsas.length > 0) {
           item.salsas.map((salsa) => {

@@ -26,12 +26,10 @@ module.exports = {
     }
     const { orderitem } = req.body
     let order = await DB.Sale.create({ ...req.body, date: newDate() })
-    orderitem.forEach( async (item) => {
-    let itemCreated = await DB.OrderItem.create({ salesId: order.id, ...item }, {
+    orderitem.forEach( item => {
+    DB.OrderItem.create({ salesId: order.id, ...item }, {
         include: [DB.OrderItem.Docena]
       })
-    if (item.detail && item.detail.length > 0)
-      DB.Detail.create({ itemId: itemCreated.id, detail: item.detail})
     })
     res.json({ ok: true, status: 200, order: order })
 
@@ -41,7 +39,7 @@ module.exports = {
     let order = await DB.Sale.findByPk(id)
     let orderitem = await DB.OrderItem.findAll({
       where: {salesId : id},
-      include: [DB.OrderItem.Docena, DB.OrderItem.Detail]
+      include: DB.OrderItem.Docena
     })
     if (order && orderitem) {
       order.setDataValue("orderitem", orderitem)
@@ -60,7 +58,7 @@ module.exports = {
       DB.OrderItem.destroy({
         where: { salesId: id },
         force: true
-      },{include: [DB.OrderItem.Docena, DB.OrderItem.Detail]})
+      },{include: DB.OrderItem.Docena})
       res.json({ ok: true, status: 200 })
     } else {
       res.json({ ok: false, status: 401, error: "Unauthorized" })
@@ -125,7 +123,7 @@ module.exports = {
     orderitem.forEach(item => {
       delete item.id
       DB.OrderItem.create({ salesId: id, ...item }, {
-        include: [DB.OrderItem.Docena, DB.OrderItem.Detail]
+        include: DB.OrderItem.Docena
       })
     })
     let order = {id: id}

@@ -22,6 +22,10 @@ module.exports = (sequelize, dataTypes) => {
       type: dataTypes.INTEGER,
       allowNull: false,
     },
+    details: {
+      type: dataTypes.TEXT,
+      allowNull: true,
+    }
   };
   let config = {
     tableName: "orderitem",
@@ -37,10 +41,6 @@ module.exports = (sequelize, dataTypes) => {
     });
     OrderItem.Docena = OrderItem.hasMany(models.Docena, {
       as: "docena",
-      foreignKey: "itemId",
-    });
-    OrderItem.Detail = OrderItem.hasMany(models.Detail, {
-      as: "detail",
       foreignKey: "itemId",
     });
   };
